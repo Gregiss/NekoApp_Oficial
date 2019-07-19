@@ -1,0 +1,22 @@
+<div id="feed" class="tabs grupos" data-id="top">
+   <div class="feed">
+      <span><i class="fas fa-layer-group"></i>     Grupos </span>
+	  <right><i class="fas fa-plus-square"></i><right>
+   </div>
+   <span style="color: var(--white2); padding: 10px; position: absolute; top: 40px; z-index: 2;">Sugeridos</span>
+   <div class="sugered">
+	<?php for($i = 1; $i < 10; $i++){?>
+   	<div class="people" data-id="<?php echo $i;?>" data-servidor="Servidor <?php echo $i;?>">
+		   <h1><?php echo $i;?></h1>
+	</div>
+	<?php } ?>
+   </div>
+   <span style="color: var(--white2); padding: 10px; position: absolute; top: 185px; z-index: 2;">Favoritos</span>
+   <div class="sugered">
+	<?php for($i = 1; $i < 3; $i++){?>
+   	<div class="people" data-id="<?php echo $i;?>" data-servidor="Servidor <?php echo $i;?>">
+		   <h1><?php echo $i;?></h1>
+	</div>
+	<?php } ?>
+   </div>
+</div>
