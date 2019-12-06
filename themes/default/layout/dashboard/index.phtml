@@ -141,11 +141,15 @@ var app = new Vue({
       .then(response => (this.users = response.data))
    },
    novoServer(){
+      if(this.serverName == "" || this.serverName == null){
+         return
+      } else{
       axios
       .post('/api/newServer?name=' + this.serverName)
       .then(response => (this.showServer()))
       this.serverName = ""
       this.newServer = false
+      }
    },
    showServer(){
       axios
