@@ -182,6 +182,8 @@ textarea::-webkit-scrollbar-thumb {
 	padding: 5px;
 	position: relative;
 	text-align: center;
+	word-break: break-all;
+	white-space: pre-wrap;
 }
 
 #feed .list_feed .post{
