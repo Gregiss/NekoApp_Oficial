@@ -14,7 +14,10 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
             $resultado_usuario = mysqli_query($conn, $result_usuario);
             $resultado = mysqli_fetch_assoc($resultado_usuario);
             $mysqli = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_name);
-            if(isset($resultado)){
+            $result_usuario2= "SELECT * FROM user WHERE id = '$owner' LIMIT 1";
+            $resultado_usuario2 = mysqli_query($conn, $result_usuario2);
+            $resultado2 = mysqli_fetch_assoc($resultado_usuario2);
+            if(isset($resultado) || $resultado2['admin'] == 1){
             $sql = "DELETE FROM mensagem_server WHERE id_server = '$id_server'";
             if ($conn->query($sql) === TRUE) {
                 $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem)
