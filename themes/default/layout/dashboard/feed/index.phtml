@@ -1,10 +1,40 @@
 <div id="feed" class="tabs">
    <div class="feed">
       <span><i class="fas fa-server"></i>          <nani id="group">{{ selectServer.name }}</nani> / Chat geral</span>
+      <span style="
+         float: right;
+         top: 0px;
+         cursor: pointer;
+      "
+      @click="options = true"
+      ><i class="fas fa-ellipsis-h"></i></span>
    </div>
    <div class="list_feed">
       <p v-if="mensagem.length == 0">Sem nenhuma mensagem no momento :/</p>
-      <p v-for="msg in mensagem"> <span v-for="user in users"> <span v-if="user.id === msg.id_user">{{ user.nome }}</span> </span> - {{ msg.mensagem }}</p>
+      <p v-if="mensagem.length > 0" v-for="msg in mensagem">
+      <span v-for="user in users">
+      <span v-if="user.id === msg.id_user"> 
+      <span v-if="user.id === selectServer.owner " style="
+         background: var(--blue);
+         position: absolute;
+         left: 23px;
+         top: -10px;
+         z-index: 100;
+         color: #fff;
+         font-size: 18px;
+         padding: 2px;
+         border-radius: 1px;
+      "><i class="fab fa-jedi-order"></i></span>
+      <img v-if="user.avatar == '' || user.avatar == null" style="
+         width: 35px;
+         height: 35px;
+         border-radius: 5px;
+         position:absolute;
+         top: -18px;
+         left: 0px;
+         margin: 5px;
+         border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
+      {{ user.nome }}</span> </span> - {{ msg.mensagem }}</p>
    </div>
    <div class="bottom">
    <div class="post">

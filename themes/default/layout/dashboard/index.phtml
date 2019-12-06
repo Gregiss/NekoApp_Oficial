@@ -46,6 +46,26 @@ $(document).ready(function() {
    </div>
 </div>
 
+<div class="newServer" v-if="options">
+   <div class="modal full">
+      <h1>Configurações do server {{ selectServer.name }}</h1>
+      <br>
+      <div class="admin" v-if="myId === selectServer.owner">
+      <p style="position: relative; float: left; left: 30px; font-size: 18px; top: 10px;">Editar nome</p>
+      <input type="text" :value="selectServer.name">
+      <button v-if="selectServer.id !== 1" @click="deleteServer" style="background: rgb(183, 47, 47); width: auto; padding: 10px; border-radius: 50%; outline: none;"><i class="far fa-trash-alt"></i> </button>
+      </div>
+      <span style="
+      float: right;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 32px;
+      cursor: pointer;
+      " @click="options = false"><i class="fas fa-times"></i></span>
+   </div>
+</div>
+
 </div>
 </div>
 </div>
@@ -61,17 +81,21 @@ $(document).ready(function() {
 
 
 <script>
+var myId = "<?php echo $_COOKIE['iduser']?>";
+
 var app = new Vue({
  el: "#app",
  data:{
+   myId: myId,
    servers: [],
-   selectServer: {"id" : 1, "name": "Global"},
+   selectServer: {"id" : 1, "name": "Global", "owner": "3"},
    mensagem: [],
    msg: "",
    users: [],
    newServer: false,
    serverName: "",
-   onde: "perfil"
+   onde: "perfil",
+   options: false
  },
  methods:{
    serverSelect(server  ){
@@ -145,17 +169,131 @@ var app = new Vue({
 		}
 		$(this).css("color", "#fff");
 		$(this).addClass( "active" );
+   },
+   deleteServer(){
+      axios
+      .get('/api/deleteServer?server=' + this.selectServer.id)
+      .then(response => (console.log(response.data)))
+      this.options = 0
+      this.selectServer = this.servers[0]
    }
  },
  mounted () {
       axios
       .get('/api/list_servern')
-      .then(response => (this.servers = response.data))
+      .then(response => (this.servers = response.data));
       setInterval(() => {
       this.showMensagem();
       this.allUsers();
       this.showServer()
       }, 700);
+      var search_top = "-35px";
+$(".search").css("top", search_top);
+var tabs = 1;
+var grupos = 0;
+
+$(".tabs .icon").click(function(){
+	var href = $(this).data("id");
+	if(href == "search"){
+		if(search_top == "-35px"){
+			search_top = "0px";
+			icon_index_search = "5";
+		}
+		else{
+			search_top = "-35px";
+			icon_index_search = "0";
+		}
+		$(".search").css("top", search_top);
+	}
+})
+
+$(".tabs").mouseover(function(){
+	tabs = 1;
+});
+
+$(".tabs").mouseout(function(){
+	tabs = 0;
+});
+
+$(".sugered").mouseover(function(){
+	grupos = 1;
+});
+
+$(".sugered").mouseout(function(){
+	grupos = 0;
+});
+
+$(function() {
+
+   $(".sugered").mousewheel(function(event, delta) {
+   	if(grupos == 1){
+      this.scrollLeft -= (delta * 30);
+      event.preventDefault();
+   }
+   });
+
+});
+
+
+$(function() {
+
+   $(".tabs").mousewheel(function(event, delta) {
+   	if(tabs == 1){
+   	if(grupos == 0){
+      this.scrollTop -= (delta * 30);
+      event.preventDefault();
+   }
+}
+   });
+
+});
+
+$(function() {
+
+   $(".scroll").mousewheel(function(event, delta) {
+   	if(tabs == 0){
+   if(grupos == 0){
+      this.scrollLeft -= (delta * 30);
+    
+      event.preventDefault();
+     }
+ }
+   });
+
+});
+
+navegartabs();
+acessarGrupos();
+
+function navegartabs(){
+	$(".fixed .links_rapido").click(function(){
+		var onde = $(this).data("id");
+		$(".tabs").css("padding", "0px");
+		$(".fixed .links_rapido").css("color", "var(--white2)");
+		$( ".fixed .links_rapido" ).removeClass( "active" );
+		$(".tabs").css("left", "-15px");
+		if(onde == "perfil"){
+			$(".tabs").css("width", "0%");
+			$("#me").css("width", "100%");
+		} else if(onde == "feed"){
+			$(".tabs").css("width", "0%");
+			$("#feed").css("width", "100%");
+		} else if(onde == "grupos"){
+			$(".tabs").css("width", "0%");
+			$(".grupos").css("width", "100%");
+		}
+		$(this).css("color", "#fff");
+		$(this).addClass( "active" );
+	});
+}
+
+function acessarGrupos(){
+	$(".grupos .sugered .people").click(function(){
+		var id = $(this).data("id");
+		var servidorname = $(this).data("servidor");
+		$("#feed .feed #group").html(servidorname);
+	});
+}
    }
 })
 </script>

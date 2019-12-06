@@ -190,6 +190,8 @@ textarea::-webkit-scrollbar-thumb {
 	text-align: center;
 	word-break: break-all;
 	white-space: pre-wrap;
+	background: var(--dark1);
+	margin: 10px;
 }
 
 #feed .list_feed .post{
@@ -538,3 +540,9 @@ right i{
 	height: 6px;
   }
   
+
+  .full{
+	  width: auto;
+	  height: auto;
+	  text-align: center;
+  }
