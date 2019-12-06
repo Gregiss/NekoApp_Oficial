@@ -678,11 +678,11 @@ textarea::placeholder{
 
   .modal button{
 	  position: relative;
-	  left: 0px;
+	  left: -11px;
 	  display: block;
 	  padding: 4px;
 	  cursor: pointer;
 	  margin: 10px;
 	  width: 100%;
 	  text-align: center;
-  }
+	 }
