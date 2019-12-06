@@ -132,6 +132,7 @@ var app = new Vue({
       .post('/api/send?server=' + this.selectServer.id + "&mensagem=" + this.msg)
       .then(response => (this.mensagem = response.data))
       this.msg = ""
+      this.mensagem = []
       }
    },
    allUsers(){

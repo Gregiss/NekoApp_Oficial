@@ -20,7 +20,7 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
                 $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem)
                 VALUES ('".$owner."', '".$id_server."', 'As mensagems foram apagadas')";
                 if (mysqli_query($conn, $sql)) {
-
+                    echo "Mensagem deleted :D";
                 }
             } else {
                 echo "Error deleting record: " . $conn->error;

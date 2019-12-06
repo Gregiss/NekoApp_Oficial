@@ -12,7 +12,7 @@
    <div class="list_feed">
  
       <p v-if="mensagem.length == 0">Sem nenhuma mensagem no momento :/</p>
-      <p v-if="mensagem.length > 0" v-for="msg in mensagem">
+      <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem">
       <span v-for="user in users">
       <span v-if="user.id === msg.id_user"> 
       <span v-if="user.id === selectServer.owner " style="
@@ -35,7 +35,7 @@
          left: 0px;
          margin: 5px;
          border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
-      {{ user.nome }}</span> </span> - {{ msg.mensagem }}</p>
+      {{ user.nome }} - </span> </span>  {{  msg.mensagem }}</p>
      
    </div>
 
