@@ -26,6 +26,7 @@ $(document).ready(function() {
 });
 </script>
 
+<div id="app">
 <div class="container">
 <div class="scroll" data-id="hori">
 <?php
@@ -35,13 +36,128 @@ $(document).ready(function() {
    require("feed/index.phtml");
    require("groups/index.phtml");
 ?>
+
+<div class="newServer" v-if="newServer">
+   <div class="modal">
+      <h1>Criar novo server</h1>
+      <input v-model="serverName" type="text" placeholder="Nome do server">
+      <button @click="novoServer">Criar</button>
+      <button @click="newServer = false">Cancelar</button>
+   </div>
+</div>
+
+</div>
 </div>
 </div>
 
 <link rel="stylesheet" href="<?php echo $site_url;?>/themes/<?php echo $theme;?>/css/dashboard.css">
 
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script src="/themes/default/js/dashboard.js?version=1" type="text/javascript"></script>
 <script src="/themes/default/js/navegar.js?version=1" type="text/javascript"></script>
 
+
+<script>
+var app = new Vue({
+ el: "#app",
+ data:{
+   servers: [],
+   selectServer: {"id" : 1, "name": "Global"},
+   mensagem: [],
+   msg: "",
+   users: [],
+   newServer: false,
+   serverName: "",
+   onde: "perfil"
+ },
+ methods:{
+   serverSelect(server  ){
+      this.selectServer = server
+      this.onde = 'feed';
+      $(".tabs").css("padding", "0px");
+		$(".fixed .links_rapido").css("color", "var(--white2)");
+		$( ".fixed .links_rapido" ).removeClass( "active" );
+		$(".tabs").css("left", "-15px");
+		if(this.onde == "perfil"){
+			$(".tabs").css("width", "0%");
+			$("#me").css("width", "100%");
+		} else if(this.onde == "feed"){
+			$(".tabs").css("width", "0%");
+			$("#feed").css("width", "100%");
+		} else if(this.onde == "grupos"){
+			$(".tabs").css("width", "0%");
+			$(".grupos").css("width", "100%");
+		}
+		$(this).css("color", "#fff");
+		$(this).addClass( "active" );
+   },
+   showMensagem(){
+      axios
+      .get('/api/receive?id=' + this.selectServer.id)
+      .then(response => (this.mensagem = response.data))
+   },
+   sendMsg(){
+      if(this.msg == "" || this.msg == null){
+         return
+      }
+      else{
+      axios
+      .post('/api/send?server=' + this.selectServer.id + "&mensagem=" + this.msg)
+      .then(response => (this.mensagem = response.data))
+      this.msg = ""
+      }
+   },
+   allUsers(){
+      axios
+      .get('/api/allUsers')
+      .then(response => (this.users = response.data))
+   },
+   novoServer(){
+      axios
+      .post('/api/newServer?name=' + this.serverName)
+      .then(response => (this.showServer()))
+      this.serverName = ""
+      this.newServer = false
+   },
+   showServer(){
+      axios
+      .get('/api/list_servern')
+      .then(response => (this.servers = response.data))
+   },
+   navegarTabs(onder){
+      this.onde = onder;
+      $(".tabs").css("padding", "0px");
+		$(".fixed .links_rapido").css("color", "var(--white2)");
+		$( ".fixed .links_rapido" ).removeClass( "active" );
+		$(".tabs").css("left", "-15px");
+		if(this.onde == "perfil"){
+			$(".tabs").css("width", "0%");
+			$("#me").css("width", "100%");
+		} else if(this.onde == "feed"){
+			$(".tabs").css("width", "0%");
+			$("#feed").css("width", "100%");
+		} else if(this.onde == "grupos"){
+			$(".tabs").css("width", "0%");
+			$(".grupos").css("width", "100%");
+		}
+		$(this).css("color", "#fff");
+		$(this).addClass( "active" );
+   }
+ },
+ mounted () {
+      axios
+      .get('/api/list_servern')
+      .then(response => (this.servers = response.data))
+      setInterval(() => {
+      this.showMensagem();
+      this.allUsers();
+      this.showServer()
+      }, 700);
+   }
+})
+</script>
 
 </body>

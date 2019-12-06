@@ -5,7 +5,7 @@
       <div class="icon" data-id="search"><i class="fas fa-search"></i></div>
       <div class="icon" data-id="money"><i class="fas fa-money-bill-wave"></i></div>
       <div class="icon" data-id="settings"><i class="fas fa-cogs"></i></div>
-      <div class="icon" data-id="logout"><i class="fas fa-sign-out-alt"></i></div>
+      <a href="/logout?token=<?php echo sha1($_COOKIE['iduser']);?>"> <div class="icon" data-id="logout"><i class="fas fa-sign-out-alt"></i></div></a>
       </center>
    </div>
    <div class="search">
