@@ -116,12 +116,12 @@ var app = new Vue({
          return
       }
       else{
-         this.msg = this.msg.replace(this.selectUserA.nome, "")
       if(!this.estouMencionando){
          axios
       .post('/api/send?server=' + this.selectServer.id + "&mensagem=" + this.msg)
       .then(response => (this.mensagem = response.data))
       } else{
+         this.msg = this.msg.replace(this.selectUserA.nome, "")
          axios
       .post('/api/send?server=' + this.selectServer.id + "&mensagem=" + this.msg + "&mencionando=" + this.selectUserA.id)
       .then(response => (this.mensagem = response.data))
