@@ -139,8 +139,12 @@ var app = new Vue({
    },
    verificarError(){
       setTimeout(() => {
-      if(this.error == "not_perm"){
+      if(this.error == "sucessnot_perm"){
          this.errorNu = {"titulo": "Você não tem permissão para isso"}
+      } else if(this.error == "sucessnot_perm"){
+         this.errorNu = {"titulo": "Você não tem permissão para isso"}
+      } else if(this.error == "sucess"){
+         return
       } else{
          this.errorNu = {"titulo": "As mensagens foram deletadas :D"}
       }

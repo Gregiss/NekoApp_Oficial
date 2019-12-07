@@ -13,7 +13,7 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
     $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar)
     VALUES ('".$owner."', '".$id_server."', '".$mensagem."', '".$idMenc."')";
     if (mysqli_query($conn, $sql)) {
-        echo "";
+        echo "sucess";
         if($mensagem === "/clear"){
             $result_usuario = "SELECT * FROM server WHERE id = '$id_server' and owner = '$owner' LIMIT 1";
             $resultado_usuario = mysqli_query($conn, $result_usuario);
