@@ -5,8 +5,13 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
     $owner = $_COOKIE['iduser'];
     $id_server = $_GET['server'];
     $mensagem = $_GET['mensagem'];
-    $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem)
-    VALUES ('".$owner."', '".$id_server."', '".$mensagem."')";
+    if(isset($_GET['mencionando'])){
+        $idMenc = $_GET['mencionando'];
+    } else{
+        $idMenc = -1;
+    }
+    $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar)
+    VALUES ('".$owner."', '".$id_server."', '".$mensagem."', '".$idMenc."')";
     if (mysqli_query($conn, $sql)) {
         echo "sucess";
         if($mensagem === "/clear"){

@@ -35,23 +35,36 @@
          left: 0px;
          margin: 5px;
          border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
-      {{ user.nome }} - </span> </span>  {{  msg.mensagem }}</p>
+      {{ user.nome }} <span v-if="msg.mencionar > 0"> marcou </span> <span v-if="msg.mencionar > 0" v-for="user in users" >
+      <a style="color: var(--blue); cursor: pointer;" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
+      </span> -  </span> </span> <span v-if="msg.mencionar > 0"><i class="fas fa-quote-left"></i> </span> 
+      {{  msg.mensagem }}
+       <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>
      
    </div>
 
    <div class="bottom">
    <div class="post">
-      <input v-model="msg" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
+      <input v-model="msg" @keyup="detectMessage" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsg" style="
       position: absolute;
     float: right;
     right: 0px;
     background: rgb(79, 110, 167);
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 1px;
     margin: 0px -1px;"><i class="fas fa-paper-plane"></i></button>
+    <div class="mencionar" v-if="mencionar">
+         <div class="user" v-for="user in users">
+          <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" src="/themes/avatar.png" alt=""> {{ user.nome }}</p>
+         </div>
+      </div>
    </div>
 
    </div>
