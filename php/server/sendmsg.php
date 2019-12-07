@@ -10,8 +10,32 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
     } else{
         $idMenc = -1;
     }
-    $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar)
-    VALUES ('".$owner."', '".$id_server."', '".$mensagem."', '".$idMenc."')";
+    $memeImg = "";
+    if($mensagem === "/nokpop"){
+        $memeImg = "/images/memes/1.jpg";
+        $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar, imagem)
+    VALUES (100000, '".$id_server."', '', '".$idMenc."' , '".$memeImg."' )";
+    if (mysqli_query($conn, $sql)) {
+
+    }
+    } else if($mensagem === "/yeskpop"){
+        $memeImg = "/images/memes/2.png";
+        $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar, imagem)
+    VALUES (100000, '".$id_server."', '', '".$idMenc."' , '".$memeImg."' )";
+    if (mysqli_query($conn, $sql)) {
+
+    }
+    } else if($mensagem === "/realshit"){
+        $memeImg = "/images/memes/3.png";
+        $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar, imagem)
+    VALUES (100000, '".$id_server."', '', '".$idMenc."' , '".$memeImg."' )";
+    if (mysqli_query($conn, $sql)) {
+
+    }
+    }    
+    if($memeImg === ""){
+    $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar, imagem)
+    VALUES ('".$owner."', '".$id_server."', '".$mensagem."' , '".$idMenc."' , '')";
     if (mysqli_query($conn, $sql)) {
         echo "sucess";
         if($mensagem === "/clear"){
@@ -28,20 +52,19 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
                 $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem)
                 VALUES ('".$owner."', '".$id_server."', 'As mensagems foram apagadas')";
                 if (mysqli_query($conn, $sql)) {
-                    echo "delete";
+                    echo "";
                 }
             } else {
                 echo "Error deleting record: " . $conn->error;
             }
         } else{
-            if($resultado2['admin'] == 0 || !isset($resultado)){
-                echo "not_perm";
-            }
+            echo "not_perm";
         }
         }
     } else{
         echo "error";
     }
+}
 }
 
 //'".$owner."', '".$id_server."', '".$mensagem."''

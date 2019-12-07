@@ -50,7 +50,7 @@
     cursor: pointer;" @click="vendoEstrando = false"><i class="fas fa-arrow-left"></i></button>
       <div class="back_profile"></div>
       <div class="status">
-      <img style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" src="<?php echo $avatar;?>"/>
+      <img style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" :src="estranhoProfile.avatar"/>
       <span style="color: var(--white2); position: relative; top: -50px; left: 10px; font-size: 22px;">
       <div class="loading" v-if="estranhoProfile.nome == '' || estranhoProfile.nome == null" style="
       top: -20px;
