@@ -2,15 +2,31 @@
    <div class="noti">
       <center>
       <div  class="icon" data-id="friends"><i class="fas fa-user-friends"></i></div>
-      <div class="icon" data-id="search"><i class="fas fa-search"></i></div>
+      <div class="icon" @click="search = true" data-id="search"><i class="fas fa-search"></i></div>
       <div class="icon" data-id="money"><i class="fas fa-money-bill-wave"></i></div>
       <div class="icon" data-id="settings"><i class="fas fa-cogs"></i></div>
       <a href="/logout?token=<?php echo sha1($_COOKIE['iduser']);?>"> <div class="icon" data-id="logout"><i class="fas fa-sign-out-alt"></i></div></a>
       </center>
    </div>
-   <div class="search">
-      <input type="text" placeholder="Buscar">
+   <div class="search" v-bind:class="{ searchAtivo: search }">
+      <input v-model="searchTerm" @blur="search = false" type="text" placeholder="Buscar">
       <button class="btn"><i class="fas fa-search"></i></button>
+   </div>
+
+   <div class="mencionar" v-if="search" style="top: 79px;
+    z-index: 1000;
+    max-height: 80%;
+    background: #26272b;
+    z-index: 50000 !important;">
+    <h1 style="padding: 10px; font-size: 18px;">Buscas para {{ searchTerm }} </h1>
+         <div @click="verEstranho(user)" class="user" v-for="user in users" v-if="user.nome.includes(searchTerm.replace('@', ''))">
+         
+          <p > <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" src="/themes/avatar.png" alt=""> {{ user.nome }}</p>
+         </div>
    </div>
 
    <div v-if="!vendoEstrando"  class="profile_foo" style="background: rgb(57, 63, 74); width: 100%; height: 200px; padding: 5px 0px">
@@ -50,7 +66,8 @@
     cursor: pointer;" @click="vendoEstrando = false"><i class="fas fa-arrow-left"></i></button>
       <div class="back_profile"></div>
       <div class="status">
-      <img style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" :src="estranhoProfile.avatar"/>
+      <img v-if="estranhoProfile.avatar !==  ''" style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" :src="estranhoProfile.avatar"/>
+      <img v-if="estranhoProfile.avatar ===  ''" style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" src="/themes/avatar.png"/>
       <span style="color: var(--white2); position: relative; top: -50px; left: 10px; font-size: 22px;">
       <div class="loading" v-if="estranhoProfile.nome == '' || estranhoProfile.nome == null" style="
       top: -20px;

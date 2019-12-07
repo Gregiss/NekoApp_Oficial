@@ -104,7 +104,9 @@ const app = new Vue({
    estranhoProfile: {},
    vendoEstrando: false,
    error: null,
-   errorNu: {"titulo" : null}
+   errorNu: {"titulo" : null},
+   search: false,
+   searchTerm: ""
  },
  methods:{
    serverSelect(server  ){
@@ -221,6 +223,7 @@ const app = new Vue({
       }
    },
    selectUser(user){ 
+     
       this.selectUserA = user
       this.msg = this.msg.replace('@', '')
       this.msg = this.msg.replace(this.msg, '')
@@ -236,6 +239,8 @@ const app = new Vue({
       }
    },
    verEstranho(user){
+      this.search = false
+      this.searchTerm = ""
       if(user.id !== myId){
       this.estranhoProfile = user
       this.vendoEstrando = true
