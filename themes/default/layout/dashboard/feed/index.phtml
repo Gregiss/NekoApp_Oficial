@@ -60,7 +60,6 @@
       {{  msg.mensagem }}
       <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt="">
        <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>
-     
    </div>
 
    <div class="bottom">
@@ -76,13 +75,17 @@
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 1px;
     margin: 0px -1px;"><i class="fas fa-paper-plane"></i></button>
-    <div class="mencionar" v-if="mencionar">
+    <div class="mencionar scrollar" v-if="mencionar">
          <div class="user" v-for="user in users">
           <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
          width: 38px;
          position: absolute;
          top: 0px;
-         left: 0px;" src="/themes/avatar.png" alt=""> {{ user.nome }}</p>
+         left: 0px;" v-if="user.avatar == ''" src="/themes/avatar.png" alt=""> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar !== ''" :src="user.avatar" alt="">{{ user.nome }}</p>
          </div>
       </div>
    </div>

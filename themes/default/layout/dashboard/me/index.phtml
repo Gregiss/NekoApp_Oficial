@@ -13,9 +13,9 @@
       <button class="btn"><i class="fas fa-search"></i></button>
    </div>
 
-   <div class="mencionar" v-if="search" style="top: 79px;
+   <div class="mencionar scrollar" v-if="search" style="top: 79px;
     z-index: 1000;
-    max-height: 80%;
+    max-height: 100%;
     background: #26272b;
     z-index: 50000 !important;">
     <h1 style="padding: 10px; font-size: 18px;">Buscas para {{ searchTerm }} </h1>
@@ -25,7 +25,11 @@
          width: 38px;
          position: absolute;
          top: 0px;
-         left: 0px;" src="/themes/avatar.png" alt=""> {{ user.nome }}</p>
+         left: 0px;" v-if="user.avatar == ''" src="/themes/avatar.png" alt=""> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar !== ''" :src="user.avatar" alt=""> {{ user.nome }}</p>
          </div>
    </div>
 
@@ -45,6 +49,43 @@
       </span>
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
       </div>
+
+   <div style="border: 1px solid var(--dark1);
+    color: var(--white2);
+    position: relative;
+    top: -80px;
+    padding: 25px 24px 0px;
+    background: rgba(0,0,0,.10);
+    height: calc(100% + 423px);
+    width: calc(94% - 32px);">
+   <h1 style="font-size: 22px;">Notificações</h1>
+
+   <div class="scroll">
+   <li style="list-style: none;
+    background: var(--dark1);
+    padding: 20px;
+    position: relative;
+    left: -9px;
+    width: 78%;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;">
+      <img style="height: 38px;
+    width: 38px;
+    position: absolute;
+    top: -6px;
+    left: 11px;" src="/themes/avatar.png" alt="">
+    <span style="left: 40px; position: relative; top: -15px;">Alexandre Silva</span>
+         <p style="left: -8px;
+    position: relative;
+    white-space: pre-wrap;
+    top: 3px;
+    width: 100%;">Te mandou uma solitação de amizade</p>
+   </li>
+   </div>
+
+   </div>
+
    </div>
 
    <div v-else="" class="profile_foo" style="top: 46px;background: rgb(57, 63, 74); width: 100%; height: 200px; padding: 5px 0px">
@@ -80,6 +121,37 @@
       </span>
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
       </div>
+
+   <div style="    position: relative;
+    top: -112px;
+    left: 20px;
+    width: auto;">
+   <button style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="far fa-comment-dots"></i></button>
+    <button style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-thumbs-up"></i></button>
+    <button style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-user-plus"></i></button>
+   </div>
+
    </div>
 
    

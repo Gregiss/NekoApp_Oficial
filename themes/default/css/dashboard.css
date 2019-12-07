@@ -133,7 +133,21 @@ input{
   outline: transparent;
 }
 
+.scrollar::-webkit-scrollbar-track {
+    -webkit-box-shadow: transparent;
+}
+
+.scrollar::-webkit-scrollbar-thumb {
+  background-color: #444;
+  outline: transparent;
+}
+
 .list_feed::-webkit-scrollbar {
+    width: 5px;
+    height: 8px
+}
+
+.scrollar::-webkit-scrollbar {
     width: 5px;
     height: 8px
 }
@@ -686,6 +700,10 @@ right i{
     left: 0px;
     width: 100%;
     z-index: 10000;
+}
+
+button{
+	outline: none;
 }
 
 nani{
