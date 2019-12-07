@@ -598,11 +598,12 @@ right i{
 		bottom: 41px;
 		left: 0px;
 		width: 100%;
-		height: 200px;
+		max-height: 200px;
 		background: var(--dark1);
 		color: #fff;
 		text-align: left;
 		overflow: auto;
+		height: auto;
   }
 
   .mencionar p{
@@ -638,4 +639,41 @@ right i{
         height: calc(99% - 40px) !important;
     }
     
+}
+
+@-webkit-keyframes loading {
+	0%   { opacity: 0.7; }
+	100% { opacity: 1; }
+  }
+  @-moz-keyframes loading {
+	0%   { opacity: 0.7; }
+	100% { opacity: 1; }
+  }
+  @-o-keyframes loading {
+	0%   { opacity: 0.7; }
+	100% { opacity: 1; }
+  }
+  @keyframes loading {
+	0%   { opacity: 0.7; }
+	100% { opacity: 1; }
+  }
+
+  .loading{
+	-webkit-animation: loading 2s infinite; /* Safari 4+ */
+	-moz-animation:    loading 2s infinite; /* Fx 5+ */
+	-o-animation:      loading 2s infinite; /* Opera 12+ */
+	animation:         loading 2s infinite; /* IE 10+, Fx 29+ */
+  }
+
+  .errorPulse{
+	-webkit-animation: scaling 1s infinite alternate;
+  }
+
+  @keyframes scaling {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.04);
+    }
 }

@@ -10,11 +10,21 @@
       ><i class="fas fa-ellipsis-h"></i></span>
    </div>
    <div class="list_feed">
- 
+      <div class="errorb errorPulse" v-if="errorNu.titulo !== null" style="border-radius: 28px;
+    position: relative;
+    top: -11px;
+    width: 90%;
+    background: var(--new);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    margin: 0px auto;">
+         {{ errorNu.titulo }}
+      </div>
       <p v-if="mensagem.length == 0">Sem nenhuma mensagem no momento :/</p>
       <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem">
       <span v-for="user in users">
-      <span v-if="user.id === msg.id_user"> 
+      <span style="cursor: pointer;" v-if="user.id === msg.id_user" @click="verEstranho(user)"> 
       <span v-if="user.id === selectServer.owner " style="
          background: var(--blue);
          position: absolute;
@@ -36,7 +46,7 @@
          margin: 5px;
          border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
       {{ user.nome }} <span v-if="msg.mencionar > 0"> marcou </span> <span v-if="msg.mencionar > 0" v-for="user in users" >
-      <a style="color: var(--blue); cursor: pointer;" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
+      <a @click="verEstranho(user)" style="color: var(--blue); cursor: pointer;" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
       </span> -  </span> </span> <span v-if="msg.mencionar > 0"><i class="fas fa-quote-left"></i> </span> 
       {{  msg.mensagem }}
        <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>

@@ -13,7 +13,7 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
     $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem, mencionar)
     VALUES ('".$owner."', '".$id_server."', '".$mensagem."', '".$idMenc."')";
     if (mysqli_query($conn, $sql)) {
-        echo "sucess";
+        echo "";
         if($mensagem === "/clear"){
             $result_usuario = "SELECT * FROM server WHERE id = '$id_server' and owner = '$owner' LIMIT 1";
             $resultado_usuario = mysqli_query($conn, $result_usuario);
@@ -28,10 +28,14 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
                 $sql = "INSERT INTO mensagem_server (id_user, id_server, mensagem)
                 VALUES ('".$owner."', '".$id_server."', 'As mensagems foram apagadas')";
                 if (mysqli_query($conn, $sql)) {
-                    echo "Mensagem deleted :D";
+                    echo "delete";
                 }
             } else {
                 echo "Error deleting record: " . $conn->error;
+            }
+        } else{
+            if($resultado2['admin'] == 0 || !isset($resultado)){
+                echo "not_perm";
             }
         }
         }

@@ -27,5 +27,5 @@ RewriteRule ^api/send /php/server/sendmsg.php	 [NC,QSA]
 RewriteRule ^api/allUsers /php/server/users.php	 [NC,QSA]
 RewriteRule ^api/newServer /php/server/newServer.php	 [NC,QSA]
 RewriteRule ^api/deleteServer /php/server/delete_server.php	 [NC,QSA]
-RewriteRule ^api/all /php/server/all_api.php	 [NC,QSA]
+RewriteRule ^api/user /php/server/myProfile.php	 [NC,QSA]
 </IfModule>
