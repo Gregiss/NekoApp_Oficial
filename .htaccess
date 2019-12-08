@@ -28,4 +28,7 @@ RewriteRule ^api/allUsers /php/server/users.php	 [NC,QSA]
 RewriteRule ^api/newServer /php/server/newServer.php	 [NC,QSA]
 RewriteRule ^api/deleteServer /php/server/delete_server.php	 [NC,QSA]
 RewriteRule ^api/user /php/server/myProfile.php	 [NC,QSA]
+RewriteRule ^api/news /php/notifications/notificar.php	 [NC,QSA]
+RewriteRule ^api/AddFriend /php/user/AddFriend.php	 [NC,QSA]
+RewriteRule ^api/acceptAmigo /php/user/acceptAmigo.php	 [NC,QSA]
 </IfModule>

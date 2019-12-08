@@ -36,8 +36,16 @@
    <div v-if="!vendoEstrando"  class="profile_foo" style="background: rgb(57, 63, 74); width: 100%; height: 200px; padding: 5px 0px">
       <div class="back_profile"></div>
       <div class="status">
-      <img v-if="myProfile.avatar !== '' || myProfile === null" style="background:#000; z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" :src="myProfile.avatar"/>
-      <img v-if="myProfile.avatar === ''" style="z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;" src="<?php echo $user['avatar'];?>"/>
+      <img style=" z-index: 100; position: relative;width: 80px; height: 80px; border-radius: 10px; transition: 0.4s;"  src="/themes/avatar.png">
+      <img v-if="!myProfile.avatar == ''" style="z-index: 100;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    transition: all 0.4s ease 0s;
+    position: absolute;
+    left: 0px;" src="/themes/avatar.png" :src="myProfile.avatar">
+      </img>
       <span style="color: var(--white2); position: relative; top: -50px; left: 10px; font-size: 22px;">
       <div class="loading" v-if="myProfile.nome == '' || myProfile.nome == null" style="
       top: -20px;
@@ -51,15 +59,62 @@
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
       </div>
 
-   <div style="border: 1px solid var(--dark1);
+   <div class="newN" style="
     color: var(--white2);
-    position: relative;
-    top: -80px;
+    position: absolute;
+    top: 210px;
     padding: 25px 24px 0px;
-    background: rgba(0,0,0,.10);
-    height: calc(100% + 423px);
-    width: calc(94% - 32px);">
+    height: calc(100% + 430px);
+    width: calc(94% - 30px);">
+    <button v-bind:class="{newsNAtivo: notificationWhere == 0}" @click="notificationWhere = 0">
+    <i class="fas fa-bell"></i>
+    <div class="count_b" v-if="notifications[0].count > 0">
+       <span v-if="notifications[0].count >= 99">+99</span> <span v-else="">{{ notifications[0].count }}</span>
+      </div>
+    </button>
+    <button v-bind:class="{newsNAtivo: notificationWhere == 1}" @click="notificationWhere = 1">
+    <i class="fas fa-comments"></i>
+    <div class="count_b" v-if="notifications[1].count > 0">
+       <span v-if="notifications[1].count >= 99">+99</span> <span v-else="">{{ notifications[1].count }}</span>
+      </div>
+    </button>
+   <div v-if="notificationWhere == 0">
    <h1 style="font-size: 22px;">Notificações</h1>
+   <span style="padding: 0px; font-size: 23px; margin-top: 20px; position: relative; top: 30px;" v-if="notifications[0].count == 0">
+      Nenhuma notificação
+   </span>
+   <div class="scroll">
+   <div v-for="user in users">
+   <li v-for="friend in newsBa" 
+   v-if="friend.id_quem == myProfile.id && friend.ativo == 1 && friend.aceito == 0 && user.id == friend.id_user"
+   @click="verEstranho(user)"
+   style="list-style: none;
+    background: var(--dark1);
+    padding: 20px;
+    position: relative;
+    left: -9px;
+    width: 78%;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;">
+      <img style="height: 38px;
+    width: 38px;
+    position: absolute;
+    top: -6px;
+    left: 11px;" src="/themes/avatar.png" alt="">
+    <span style="left: 40px; position: relative; top: -15px;">{{ user.nome }}</span>
+         <p style="left: -8px;
+    position: relative;
+    white-space: pre-wrap;
+    top: 3px;
+    width: 100%;">Te mandou uma solitação de amizade</p>
+   </li>
+   </div>
+   </div>
+   </div>
+
+   <div v-if="notificationWhere == 1">
+   <h1 style="font-size: 22px;">Mensagens</h1>
 
    <div class="scroll">
    <li style="list-style: none;
@@ -81,8 +136,9 @@
     position: relative;
     white-space: pre-wrap;
     top: 3px;
-    width: 100%;">Te mandou uma solitação de amizade</p>
+    width: 100%;">Oii</p>
    </li>
+   </div>
    </div>
 
    </div>
@@ -123,7 +179,8 @@
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
       </div>
 
-   <div style="    position: relative;
+   <div style="
+    position: relative;
     top: -112px;
     left: 20px;
     width: auto;">
@@ -143,7 +200,42 @@
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;"><i class="fas fa-thumbs-up"></i></button>
-    <button style="background: var(--button-color);
+
+    <button v-if="friends.find((friend) => friend.id_quem === estranhoProfile.id && friend.id_user == myProfile.id && friend.aceito == 1)"  @click="addFriend(estranhoProfile.id)" style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-user-times"></i></button>
+    <button v-else-if="friends.find((friend) => friend.id_quem == estranhoProfile.id && friend.id_user == myProfile.id && friend.aceito == 0)" @click="addFriend(estranhoProfile.id)" style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-user-slash"></i></button>
+    <button v-else-if="friends.find((friend) => friend.id_quem == myProfile.id && friend.id_user == estranhoProfile.id && friend.aceito == 0)"
+       @click="aceitarAmigo(estranhoProfile.id)" style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-user-check"></i></button>
+    <button v-else-if="friends.find((friend) => friend.id_quem == myProfile.id && friend.id_user == estranhoProfile.id && friend.aceito == 1)" 
+       @click="addFriend(estranhoProfile.id)" style="background: var(--button-color);
+    border: none;
+    color: var(--white);
+    padding: 3px;
+    font-size: 22px;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;"><i class="fas fa-user-slash"></i></button>
+    <button v-else="" @click="addFriend(estranhoProfile.id)" style="background: var(--button-color);
     border: none;
     color: var(--white);
     padding: 3px;
@@ -151,7 +243,8 @@
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;"><i class="fas fa-user-plus"></i></button>
-   </div>
+    </div>
+
 
    </div>
 

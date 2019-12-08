@@ -709,3 +709,41 @@ button{
 nani{
 	z-index: 100;
 }
+
+.newN button{
+	background: transparent;
+	padding: 10px;
+	position: relative;
+	top: -15px;
+	cursor: pointer;
+	border-radius: 50%;
+	margin: 0px auto;
+	background: rgba(0,0,0,.10);
+	margin-left: 50%;
+	left: -40%;
+	margin-top: 0px;
+}
+
+.newN button:hover{
+	background: rgba(0,0,0,.40);
+}
+
+.newN .count_b{
+	position: absolute;
+    top: -1px;
+    right: -3px;
+    color: var(--blue);
+    font-size: 16px;
+    background: rgba(0,0,0,0.7);
+    padding: 2px;
+    border-radius: 17px;
+}
+
+.newsNAtivo{
+	background: rgba(0,0,0,.70) !important;
+	transform: scale(1.1);
+}
+
+div{
+	transition: 0.4s all;
+}

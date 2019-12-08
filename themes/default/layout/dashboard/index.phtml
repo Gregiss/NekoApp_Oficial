@@ -100,13 +100,20 @@ const app = new Vue({
    mencionar: false,
    selectUserA: null,
    estouMencionando: false,
-   myProfile: {},
+   myProfile: {"nome": null, "avatar": null},
    estranhoProfile: {},
    vendoEstrando: false,
    error: null,
    errorNu: {"titulo" : null},
    search: false,
-   searchTerm: ""
+   searchTerm: "",
+   notificationWhere: 0,
+   notifications: [
+      {"count": 0},
+      {"count": 0}
+   ],
+   newsBa: [],
+   friends: []
  },
  methods:{
    serverSelect(server  ){
@@ -155,6 +162,35 @@ const app = new Vue({
       axios
       .get('/api/allUsers')
       .then(response => (this.users = response.data))
+   },
+   showNoti(){
+      axios
+      .get('/api/news')
+      .then(response => (this.newsBa = response.data))
+   },
+   addFriend(quem){
+      axios
+      .post('/api/addFriend?quem='+ quem)
+      .then(response => (console.log(response.data)))
+   },
+   aceitarAmigo(quem){
+      axios
+      .post('/api/acceptAmigo?quem='+ quem)
+      .then(response => (console.log(response.data)))
+   },
+   validarNoti(){
+      var count1 = 0;
+      this.friends = []
+      for(var i = 0; i < this.newsBa.length; i++){
+         if(this.newsBa[i].ativo == 1 && this.newsBa[i].aceito == 0){
+            count1++;
+         } 
+         if(this.newsBa[i].tipo == 1){
+            var quem = this.newsBa[i]
+            this.friends.push(quem)
+         }
+      }
+      this.notifications[0].count = count1;
    },
    novoServer(){
       if(this.serverName == "" || this.serverName == null){
@@ -252,6 +288,8 @@ const app = new Vue({
             this.showServer(); 
             this.showMensagem();
             this.allUsers();
+            this.showNoti();
+            this.validarNoti();
          }, 1000);
          setInterval(() => {  
             this.myProfileGet(); 
