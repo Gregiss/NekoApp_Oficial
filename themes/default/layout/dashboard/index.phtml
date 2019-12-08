@@ -182,7 +182,7 @@ const app = new Vue({
       var count1 = 0;
       this.friends = []
       for(var i = 0; i < this.newsBa.length; i++){
-         if(this.newsBa[i].ativo == 1 && this.newsBa[i].aceito == 0){
+         if(this.newsBa[i].id_quem == app.myProfile.id && this.newsBa[i].ativo == 1 && this.newsBa[i].aceito == 0){
             count1++;
          } 
          if(this.newsBa[i].tipo == 1){
@@ -284,16 +284,19 @@ const app = new Vue({
    }
  },
  mounted () {
+    this.myProfileGet();
+    this.showServer();
+    this.allUsers();
          setInterval(() => {  
-            this.showServer(); 
             this.showMensagem();
-            this.allUsers();
             this.showNoti();
             this.validarNoti();
-         }, 1000);
+         }, 1500);
          setInterval(() => {  
             this.myProfileGet(); 
-         }, 4000);
+            this.showServer();
+            this.allUsers();
+         }, 5000);
    }
 })
 </script>
