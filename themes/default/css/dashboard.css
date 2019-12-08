@@ -747,3 +747,19 @@ nani{
 div{
 	transition: 0.4s all;
 }
+
+.top_a{
+	top: -29px;
+    position: absolute;
+    background: var(--dark1);
+    width: calc(100% - 48px);
+	padding: 25px;
+	height: 19px;
+}
+
+.top_a img{
+	position: relative;
+	display: inline-block;
+	top: -22px;
+	cursor: pointer;
+}

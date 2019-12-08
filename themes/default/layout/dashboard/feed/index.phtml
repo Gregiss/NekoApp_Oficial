@@ -1,5 +1,14 @@
 <div id="feed" class="tabs">
-   <div class="feed">
+   <img style="width: 100%; height: auto; position: absolute; top: 50px;" src="images/0f2e2af21f069bd7e25142bfb24cd46f.svg" alt="">
+   <div class="feed" v-if="ocupado">
+   <span>Você ficou muito tempo inativo</span>
+   </div>
+   <div class="list_feed"  v-if="ocupado">
+      <p style="left: 0px; font-size: 25px; position: relative;">
+      Entre um servidor, ou mande uma mensagem
+      </p>
+   </div>
+   <div class="feed" v-if="!msgPrivada && !ocupado">
       <span><i class="fas fa-server"></i>          <nani id="group">{{ selectServer.name }}</nani> / Chat geral</span>
       <span style="
          float: right;
@@ -9,7 +18,7 @@
       @click="options = true"
       ><i class="fas fa-ellipsis-h"></i></span>
    </div>
-   <div class="list_feed">
+   <div class="list_feed" v-if="!msgPrivada && !ocupado">
       <div class="errorb errorPulse" v-if="errorNu.titulo !== null" style="border-radius: 28px;
     position: relative;
     top: -11px;
@@ -21,7 +30,7 @@
     margin: 0px auto;">
          {{ errorNu.titulo }}
       </div>
-      <p v-if="mensagem.length == 0">Sem nenhuma mensagem no momento :/</p>
+      <p v-if="mensagem.length == 0" v-if="!msgPrivada && !ocupado">Sem nenhuma mensagem no momento :/</p>
       <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem">
       <span v-for="user in users">
       <span style="cursor: pointer;" v-if="user.id === msg.id_user" @click="verEstranho(user)"> 
@@ -62,10 +71,106 @@
        <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>
    </div>
 
-   <div class="bottom">
+   <div class="bottom" v-if="!msgPrivada && !ocupado">
    <div class="post">
+   <div class="top_a">
+      <img src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+   </div>
       <input v-model="msg" @keyup="detectMessage" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsg" style="
+      position: absolute;
+    float: right;
+    right: 0px;
+    background: rgb(79, 110, 167);
+    padding: 8px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 1px;
+    margin: 0px -1px;"><i class="fas fa-paper-plane"></i></button>
+    <div class="mencionar scrollar" v-if="mencionar">
+         <div class="user" v-for="user in users">
+          <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar == ''" src="/themes/avatar.png" alt=""> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar !== ''" :src="user.avatar" alt="">{{ user.nome }}</p>
+         </div>
+      </div>
+   </div>
+
+   </div>
+
+   <div class="feed" v-if="msgPrivada && !ocupado">
+   <button style="z-index: 550;
+    position: absolute;
+    top: 28px;
+    border-radius: 50%;
+    height: auto;
+    width: auto;
+    padding: 7px;
+    background: var(--blue);
+    box-shadow: 1px 2px 1px rgba(0,0,0,.20);
+    right: 11px;
+    float: right;
+    cursor: pointer;" @click="msgPrivada = false"><i class="fas fa-arrow-left"></i></button>
+      <span> <nani id="group">{{ msgPrivadaUser.nome }}</nani> </span>
+      <span style="
+         float: right;
+         top: 0px;
+         cursor: pointer;
+      "
+      @click="options = true"
+      ><i class="fas fa-ellipsis-h"></i></span>
+   </div>
+   <div class="list_feed" v-if="msgPrivada && !ocupado">
+      <div class="errorb errorPulse" v-if="errorNu.titulo !== null" style="border-radius: 28px;
+    position: relative;
+    top: -11px;
+    width: 90%;
+    background: var(--new);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    margin: 0px auto;">
+         {{ errorNu.titulo }}
+      </div>
+      <p v-if="mensagemPrivada.length == 0">Sem nenhuma mensagem no momento :/</p>
+      <p v-if="mensagemPrivada.length > 0" class="animation_a" v-for="msg in mensagemPrivada">
+      <span v-for="user in users" v-if="msg.id_user == user.id ">
+      <img v-if="user.avatar == '' || user.avatar == null" style="
+         width: 35px;
+         height: 35px;
+         border-radius: 5px;
+         position:absolute;
+         top: -18px;
+         left: 0px;
+         margin: 5px;
+         border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
+         <img v-if="user.avatar !== ''" style="
+         width: 35px;
+         height: 35px;
+         border-radius: 5px;
+         position:absolute;
+         top: -18px;
+         left: 0px;
+         margin: 5px;
+         border: 3px solid var(--dark1);" :src="user.avatar" alt="">
+       {{ user.nome }}  - 
+      </span>
+      <span> {{ msg.mensagem }} </span>
+   </div>
+
+   <div class="bottom" v-if="msgPrivada && !ocupado">
+   <div class="post">
+   <div class="top_a">
+      <img src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+   </div>
+      <input v-model="msgPrivadaT" @keyup.Enter="sendMsgPrivada" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
+      <button  @click="sendMsgPrivada" style="
       position: absolute;
     float: right;
     right: 0px;

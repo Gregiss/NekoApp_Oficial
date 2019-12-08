@@ -113,17 +113,31 @@ const app = new Vue({
       {"count": 0}
    ],
    newsBa: [],
-   friends: []
+   friends: [],
+   msgPrivada: false,
+   msgPrivadaUser: {},
+   mensagemPrivada: [],
+   ocupado: true,
+   msgPrivadaT: ""
  },
  methods:{
    serverSelect(server  ){
       this.selectServer = server
       this.onde = 'feed';
+      this.ocupado = false
    },
    showMensagem(){
-      axios
+      if(!this.ocupado){
+      if(!this.msgPrivada){
+         axios
       .get('/api/receive?id=' + this.selectServer.id)
       .then(response => (this.mensagem = response.data))
+      } else{
+      axios
+      .get('/api/receive?iduser=' + this.msgPrivadaUser.id)
+      .then(response => (this.mensagemPrivada = response.data))
+      }
+      }
    },
    sendMsg(){
       if(this.msg == "" || this.msg == null){
@@ -281,6 +295,24 @@ const app = new Vue({
       this.estranhoProfile = user
       this.vendoEstrando = true
       }
+   },
+   chatComUser(user){
+      this.msgPrivada = true
+      this.msgPrivadaUser = user
+      this.ocupado = false
+   },
+   sendMsgPrivada(){
+      if(this.msgPrivadaT == "" || this.msgPrivadaT == null){
+         return
+      }
+      else{
+         axios
+      .post('/api/msgPrivada?id=' + this.msgPrivadaUser.id + "&mensagem=" + this.msgPrivadaT)
+      .then(response => (
+         this.error = response.data
+      ))
+      this.msgPrivadaT = ""
+   }
    }
  },
  mounted () {
