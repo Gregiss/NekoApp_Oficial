@@ -32,4 +32,5 @@ RewriteRule ^api/news /php/notifications/notificar.php	 [NC,QSA]
 RewriteRule ^api/AddFriend /php/user/AddFriend.php	 [NC,QSA]
 RewriteRule ^api/acceptAmigo /php/user/acceptAmigo.php	 [NC,QSA]
 RewriteRule ^api/msgPrivada /php/user/sendmsgprivada.php	 [NC,QSA]
+RewriteRule ^api/myMsg /php/user/myMsg.php	 [NC,QSA]
 </IfModule>

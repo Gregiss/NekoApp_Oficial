@@ -74,7 +74,7 @@
    <div class="bottom" v-if="!msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="enviarGif = true" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msg" @keyup="detectMessage" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsg" style="
@@ -87,6 +87,25 @@
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 1px;
     margin: 0px -1px;"><i class="fas fa-paper-plane"></i></button>
+    <div @blur="enviarGif = false" class="mencionar" style="position: absolute;
+    bottom: 68px;
+    left: 0px;
+    width: 100%;
+    background: var(--h);
+    color: rgb(255, 255, 255);
+    text-align: left;
+    overflow: auto;
+    height: 485px;
+    max-height: 1000px;" v-if="enviarGif">
+    <input @keyup="apiGiphy" @blur="enviarGif = false" v-model="searchTermApiGiphy" placeholder="Qual GIF?" style="position: relative;
+    width: 100%;
+    padding: 10px;
+    background: var(--dark1);
+    color: var(--white2);" type="text">
+    <div class="scrollar">
+      <img style="cursor: pointer;" @click="selectGif(gif.images.downsized_large.url)" class="gifsImg" v-for="gif in gifs" :src="gif.images.downsized_large.url" alt="">
+    </div>
+    </div>
     <div class="mencionar scrollar" v-if="mencionar">
          <div class="user" v-for="user in users">
           <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
@@ -116,6 +135,7 @@
     box-shadow: 1px 2px 1px rgba(0,0,0,.20);
     right: 11px;
     float: right;
+    z-index: 5000;
     cursor: pointer;" @click="msgPrivada = false"><i class="fas fa-arrow-left"></i></button>
       <span> <nani id="group">{{ msgPrivadaUser.nome }}</nani> </span>
       <span style="
@@ -161,13 +181,13 @@
          border: 3px solid var(--dark1);" :src="user.avatar" alt="">
        {{ user.nome }}  - 
       </span>
-      <span> {{ msg.mensagem }} </span>
+      <span> <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt=""> {{ msg.mensagem }} </span>
    </div>
 
    <div class="bottom" v-if="msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="enviarGif = true" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msgPrivadaT" @keyup.Enter="sendMsgPrivada" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsgPrivada" style="
@@ -180,6 +200,25 @@
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.4) 2px 2px 1px;
     margin: 0px -1px;"><i class="fas fa-paper-plane"></i></button>
+    <div @blur="enviarGif = false" class="mencionar" style="position: absolute;
+    bottom: 68px;
+    left: 0px;
+    width: 100%;
+    background: var(--h);
+    color: rgb(255, 255, 255);
+    text-align: left;
+    overflow: auto;
+    height: 485px;
+    max-height: 1000px;" v-if="enviarGif">
+    <input @keyup="apiGiphy" @blur="enviarGif = false" v-model="searchTermApiGiphy" placeholder="Qual GIF?" style="position: relative;
+    width: 100%;
+    padding: 10px;
+    background: var(--dark1);
+    color: var(--white2);" type="text">
+    <div class="scrollar">
+      <img style="cursor: pointer;" @click="selectGif(gif.images.downsized_large.url)" class="gifsImg" v-for="gif in gifs" :src="gif.images.downsized_large.url" alt="">
+    </div>
+    </div>
     <div class="mencionar scrollar" v-if="mencionar">
          <div class="user" v-for="user in users">
           <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;

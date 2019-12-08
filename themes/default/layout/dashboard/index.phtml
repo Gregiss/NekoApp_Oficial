@@ -118,7 +118,12 @@ const app = new Vue({
    msgPrivadaUser: {},
    mensagemPrivada: [],
    ocupado: true,
-   msgPrivadaT: ""
+   msgPrivadaT: "",
+   myMsg: [],
+   searchTermApiGiphy: "",
+   gifs: [],
+   enviarGif: false,
+   gifSelecionado: ""
  },
  methods:{
    serverSelect(server  ){
@@ -298,6 +303,7 @@ const app = new Vue({
       }
    },
    chatComUser(user){
+      this.verEstranho(user)
       this.msgPrivada = true
       this.msgPrivadaUser = user
       this.ocupado = false
@@ -314,6 +320,37 @@ const app = new Vue({
       ))
       this.msgPrivadaT = ""
    }
+   },
+   myMsgReceive(){
+      axios
+      .get('/api/myMsg')
+      .then(response => (this.myMsg = response.data))
+   },
+   apiGiphy(){
+      if(this.searchTermApiGiphy == '' || this.searchTermApiGiphy == null){
+         return;
+      } else{
+      axios
+      .get('https://api.giphy.com/v1/gifs/search?q=' + this.searchTermApiGiphy + '&api_key=91zTOLnMK6Wa0FSaZzHY0oJEefLljD9Q')
+      .then(response => (this.gifs = response.data.data))
+      }
+   },
+   selectGif(gif){
+      this.gifSelecionado = gif
+      this.enviarGif = false
+      if(!this.msgPrivada){
+      axios
+      .post('/api/send?server=' + this.selectServer.id + "&gif=" + this.gifSelecionado)
+      .then(response => (
+         this.error = response.data
+      ))
+      } else{
+         axios
+      .post('/api/msgPrivada?id=' + this.msgPrivadaUser.id + "&gif=" + this.gifSelecionado)
+      .then(response => (
+         this.error = response.data
+      ))
+      }
    }
  },
  mounted () {
@@ -324,6 +361,7 @@ const app = new Vue({
             this.showMensagem();
             this.showNoti();
             this.validarNoti();
+            this.myMsgReceive();
          }, 2000);
          setInterval(() => {  
             this.myProfileGet(); 

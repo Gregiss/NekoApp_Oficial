@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Dez-2019 às 21:47
+-- Tempo de geração: 08-Dez-2019 às 23:08
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -79,13 +79,13 @@ INSERT INTO `mensagem_server` (`id`, `id_user`, `id_server`, `mensagem`, `mencio
 (326, 4, 33, 'As mensagems foram apagadas', 0, ''),
 (341, 5, 34, 'Top', -1, ''),
 (342, 4, 34, 'Massa', -1, ''),
-(359, 4, 1, 'As mensagems foram apagadas', 0, ''),
 (360, 4, 0, 'Oi', -1, ''),
 (361, 4, 0, 'E ai', -1, ''),
 (362, 4, 0, 'Oi', -1, ''),
 (363, 4, 0, 'Oi', -1, ''),
 (364, 4, 0, 'Oi', -1, ''),
-(365, 5, 1, 'Oii', -1, '');
+(373, 10, 33, 'teste', -1, ''),
+(376, 4, 1, 'As mensagems foram apagadas', 0, '');
 
 -- --------------------------------------------------------
 
@@ -97,17 +97,35 @@ CREATE TABLE `msg` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_quem` int(11) NOT NULL,
-  `mensagem` varchar(255) NOT NULL
+  `mensagem` varchar(255) NOT NULL,
+  `imagem` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `msg`
 --
 
-INSERT INTO `msg` (`id`, `id_user`, `id_quem`, `mensagem`) VALUES
-(1, 5, 4, 'Oii'),
-(2, 4, 5, 'Tudo bem?'),
-(3, 5, 4, 'Sim');
+INSERT INTO `msg` (`id`, `id_user`, `id_quem`, `mensagem`, `imagem`) VALUES
+(1, 5, 4, 'Oii', ''),
+(2, 4, 5, 'Tudo bem?', ''),
+(3, 5, 4, 'Sim', ''),
+(4, 10, 4, 'TEste', ''),
+(5, 4, 10, 'Mensagem privada', ''),
+(6, 10, 4, 'Hello World', ''),
+(7, 4, 10, '/nokpop', ''),
+(8, 10, 4, '/clear', ''),
+(9, 4, 5, '', 'https://media0.giphy.com/media/2y98KScHKeaQM/giphy.gif?cid=076dae39008b211750b775f76bb7e3e48d5c51d973281396'),
+(10, 4, 5, '', 'https://media3.giphy.com/media/U6IQE5XjiF5hm/giphy.gif?cid=076dae39f0164afea86575091cb8cd4075fca51fe7d8f0fe'),
+(11, 4, 5, '', 'https://media3.giphy.com/media/8Lc5xmvzRhlLy/giphy.gif?cid=076dae39f0164afea86575091cb8cd4075fca51fe7d8f0fe'),
+(12, 4, 5, '', 'https://media1.giphy.com/media/b5LTssxCLpvVe/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c'),
+(13, 4, 5, '', 'https://media0.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c'),
+(14, 4, 5, '', 'https://media0.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c'),
+(15, 4, 5, '', 'https://media0.giphy.com/media/l0MYJnJQ4EiYLxvQ4/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c'),
+(16, 4, 5, '', 'https://media1.giphy.com/media/1TJB4TPjtaEJq/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c'),
+(17, 4, 5, 'oiii', ''),
+(18, 4, 100002, 'oi', ''),
+(19, 4, 100002, 'turo bom', ''),
+(20, 4, 100002, '', 'https://media2.giphy.com/media/l14qxlCgJ0zUk/giphy.gif?cid=076dae3967027a45c2ea283aae5b134bac6b6c78a4e0e96c');
 
 -- --------------------------------------------------------
 
@@ -129,7 +147,9 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `id_quem`, `id_user`, `tipo`, `ativo`, `aceito`) VALUES
-(72, 5, 4, 1, 1, 1);
+(72, 5, 4, 1, 1, 1),
+(73, 10, 4, 1, 1, 1),
+(74, 100002, 4, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -198,7 +218,7 @@ INSERT INTO `user` (`id`, `idcry`, `email`, `senha`, `nome`, `admin`, `status`, 
 (7, 'd7d4a5945417d23647416344b56bccc1adb6240d', 'dsfsdfsdsf@gmail.com', '2e6f9b0d5885b6010f9167787445617f553a735f', 'teste teste', 0, 0, 0, ''),
 (8, 'c1118c54758b09ddfa8ae6c84386ba5e05c4bec0', 'luisfelipepoint@gmail.com', '21f811b181c75e43f9493d2a7bf35f4820550793', 'luis felipe', 0, 1, 0, ''),
 (9, '15e7b626023e92812e2f537b68f131148a1f399e', 'nerdspirit2k19@gmail.com', '0cecea31958d95701975514ad427c54d07fb579a', 'Rullez WC', 0, 1, 0, ''),
-(10, '847163ec8bdcb3d003298aafca4e425f0274ade9', 'artefinal@ph2grafica.com.br', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'Azor Ahai', 0, 1, 0, ''),
+(10, '847163ec8bdcb3d003298aafca4e425f0274ade9', 'artefinal@ph2grafica.com.br', 'a873d476f684dd7a02e0ff310c060f547e3b1459', 'Azor Ahai', 0, 1, 0, ''),
 (11, '5a4c72c31d569001cc5faa3510ada4f299526d78', 'darlanhermessjb@hotmail.com', 'e0f68134d29dc326d115de4c8fab8700a3c4b002', 'Darlan Hermes Silva', 0, 1, 0, ''),
 (12, '9c3c769f52a8dd7d898649b2c901e5e1c757c49f', 'tsouzalols@gmail.com', '23ce4b2af92b195edd80f9262e2fa5f111373581', 'Mariana Souza', 1, 1, 0, ''),
 (13, '5dba7f696a1c0b761a43e40238c237308c1e3369', 'anavcsabe@gmail.com', '678690442eb01778162dcfbe06601466fa39c423', 'Tati Goxtosa', 0, 1, 0, ''),
@@ -318,19 +338,19 @@ ALTER TABLE `like`
 -- AUTO_INCREMENT de tabela `mensagem_server`
 --
 ALTER TABLE `mensagem_server`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
 
 --
 -- AUTO_INCREMENT de tabela `msg`
 --
 ALTER TABLE `msg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de tabela `postagem`

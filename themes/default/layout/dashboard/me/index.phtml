@@ -118,7 +118,8 @@
    <h1 style="font-size: 22px;">Mensagens</h1>
 
    <div class="scroll">
-   <li style="list-style: none;
+   <span v-for="user in users">
+   <li v-for="msg in myMsg" v-if="msg.id_user == user.id && msg.id_user !== myProfile.id " @click="chatComUser(user)" style="list-style: none;
     background: var(--dark1);
     padding: 20px;
     position: relative;
@@ -132,13 +133,14 @@
     position: absolute;
     top: -6px;
     left: 11px;" src="/themes/avatar.png" alt="">
-    <span style="left: 40px; position: relative; top: -15px;">Alexandre Silva</span>
+    <span style="left: 40px; position: relative; top: -15px;">{{ user.nome }}</span>
          <p style="left: -8px;
     position: relative;
     white-space: pre-wrap;
     top: 3px;
-    width: 100%;">Oii</p>
+    width: 100%;">{{ msg.mensagem    }}</p>
    </li>
+   </span>
    </div>
    </div>
 
