@@ -229,6 +229,9 @@ const app = new Vue({
       .then(response => (console.log(response.data)))
    },
    validarNoti(){
+      if(this.myProfile == "404"){
+         window.location.href = "/";
+      }
       var count1 = 0;
       this.friends = []
       for(var i = 0; i < this.newsBa.length; i++){

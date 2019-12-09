@@ -14,6 +14,12 @@ if(isset($_GET['iduser'])){
 }
 
 if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
+    $iduser = $_COOKIE['iduser'];
+$cry = $_COOKIE['cry'];
+$result_usuario = "SELECT * FROM user WHERE id = '$iduser' and idcry = '$cry' LIMIT 1";
+$resultado_usuario = mysqli_query($conn, $result_usuario);
+$user = mysqli_fetch_assoc($resultado_usuario);
+if(isset($user)){
     $mysqli = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_name);
     $eu = $_COOKIE['iduser'];
     $myArray = array();
@@ -31,5 +37,6 @@ if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
         }
         echo json_encode($myArray);
     }
+}
 }
 }
