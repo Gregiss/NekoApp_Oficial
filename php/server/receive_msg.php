@@ -14,9 +14,9 @@ if(isset($_GET['iduser'])){
 }
 
 if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
-    $iduser = $_COOKIE['iduser'];
+$iduser5 = $_COOKIE['iduser'];
 $cry = $_COOKIE['cry'];
-$result_usuario = "SELECT * FROM user WHERE id = '$iduser' and idcry = '$cry' LIMIT 1";
+$result_usuario = "SELECT * FROM user WHERE id = '$iduser5' and idcry = '$cry' LIMIT 1";
 $resultado_usuario = mysqli_query($conn, $result_usuario);
 $user = mysqli_fetch_assoc($resultado_usuario);
 if(isset($user)){

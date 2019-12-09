@@ -9,6 +9,19 @@
       </p>
    </div>
    <div class="feed" v-if="!msgPrivada && !ocupado">
+   <button style="z-index: 550;
+    position: absolute;
+    top: 28px;
+    border-radius: 50%;
+    height: auto;
+    width: auto;
+    padding: 7px;
+    background: var(--blue);
+    box-shadow: 1px 2px 1px rgba(0,0,0,.20);
+    right: 11px;
+    float: right;
+    z-index: 5000;
+    cursor: pointer;" @click="ocupado = true"><i class="fas fa-arrow-left"></i></button>
       <span><i class="fas fa-server"></i>          <nani id="group">{{ selectServer.name }}</nani> / Chat geral</span>
       <span style="
          float: right;
@@ -136,15 +149,8 @@
     right: 11px;
     float: right;
     z-index: 5000;
-    cursor: pointer;" @click="msgPrivada = false"><i class="fas fa-arrow-left"></i></button>
+    cursor: pointer;" @click="ocupado = true"><i class="fas fa-arrow-left"></i></button>
       <span> <nani id="group">{{ msgPrivadaUser.nome }}</nani> </span>
-      <span style="
-         float: right;
-         top: 0px;
-         cursor: pointer;
-      "
-      @click="options = true"
-      ><i class="fas fa-ellipsis-h"></i></span>
    </div>
    <div class="list_feed" v-if="msgPrivada && !ocupado">
       <div class="errorb errorPulse" v-if="errorNu.titulo !== null" style="border-radius: 28px;
