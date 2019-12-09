@@ -244,6 +244,11 @@ const app = new Vue({
          }
       }
       this.notifications[0].count = count1;
+      if(this.notifications[0].count > 0){
+      document.title = this.notifications[0].count +" novas notificações  | NekoApp - Página Inicial";
+      } else{
+         document.title = "NekoApp - Página Inicial";
+      }
    },
    novoServer(){
       if(this.serverName == "" || this.serverName == null){
@@ -312,7 +317,6 @@ const app = new Vue({
       }
    },
    selectUser(user){ 
-     
       this.selectUserA = user
       this.msg = this.msg.replace('@', '')
       this.msg = this.msg.replace(this.msg, '')

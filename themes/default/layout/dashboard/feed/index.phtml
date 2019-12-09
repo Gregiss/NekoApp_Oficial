@@ -44,7 +44,7 @@
          {{ errorNu.titulo }}
       </div>
       <p v-if="mensagem.length == 0" v-if="!msgPrivada && !ocupado">Sem nenhuma mensagem no momento :/</p>
-      <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem">
+      <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem" v-bind:key="msg.id">
       <span v-for="user in users">
       <span style="cursor: pointer;" v-if="user.id === msg.id_user" @click="verEstranho(user)"> 
       <span v-if="user.id === selectServer.owner " style="
@@ -165,7 +165,7 @@
          {{ errorNu.titulo }}
       </div>
       <p v-if="mensagemPrivada.length == 0">Sem nenhuma mensagem no momento :/</p>
-      <p v-if="mensagemPrivada.length > 0" class="animation_a" v-for="msg in mensagemPrivada">
+      <p v-if="mensagemPrivada.length > 0" class="animation_a" v-for="msg in mensagemPrivada" v-bind:key="msg.id">
       <span v-for="user in users" v-if="msg.id_user == user.id ">
       <a style="cursor: pointer;" @click="verEstranho(user)">
       <img v-if="user.avatar == '' || user.avatar == null" style="
