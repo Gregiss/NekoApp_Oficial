@@ -126,11 +126,41 @@ const app = new Vue({
    gifSelecionado: ""
  },
  methods:{
-   serverSelect(server  ){
+   serverSelect(server ){
       this.selectServer = server
       this.onde = 'feed';
       this.ocupado = false
       this.msgPrivada = false
+      $(".tabs").css("padding", "0px");
+		$(".fixed .links_rapido").css("color", "var(--white2)");
+		$( ".fixed .links_rapido" ).removeClass( "active" );
+		$(".tabs").css("left", "0px");
+		if(this.onde == "perfil"){
+         $("#me").css("display", "block");
+			$(".tabs").css("width", "0%");
+			$("#me").css("width", "98%");
+		} else if(this.onde == "feed"){
+         $("#feed").css("display", "block");
+			$(".tabs").css("width", "0%");
+			$("#feed").css("width", "98%");
+		} else if(this.onde == "grupos"){
+         $(".grupos").css("display", "block");
+			$(".tabs").css("width", "0%");
+			$(".grupos").css("width", "98%");
+		}
+		$(this).css("color", "#fff");
+		$(this).addClass( "active" );
+   },
+   chatComUser(user){
+      this.msgPrivada = true
+      this.msgPrivadaUser = user
+      this.onde = 'feed';
+      this.ocupado = false
+      var width = screen.width;
+      if(width < 900){
+         this.navegarTabs("feed")
+      }
+      console.log(width)
    },
    showMensagem(){
       if(!this.ocupado){
@@ -300,13 +330,15 @@ const app = new Vue({
       if(user.id !== myId){
       this.estranhoProfile = user
       this.vendoEstrando = true
-      }
-   },
-   chatComUser(user){
-      this.verEstranho(user)
-      this.msgPrivada = true
-      this.msgPrivadaUser = user
+      this.onde = 'perfil';
       this.ocupado = false
+      this.msgPrivada = false
+      var width = screen.width;
+      if(width < 900){
+         this.navegarTabs("perfil")
+      }
+      }
+      
    },
    sendMsgPrivada(){
       if(this.msgPrivadaT == "" || this.msgPrivadaT == null){

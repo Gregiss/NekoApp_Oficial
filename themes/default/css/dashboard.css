@@ -4,7 +4,7 @@ body{
 
 .tabs{
 	float: left;
-	width: 320px;
+	width: 313px !important;
 	height: calc(100% - 40px);
 	background: rgba(0,0,0,0.20);
 	border-radius: 5px;
@@ -642,7 +642,7 @@ right i{
 
     .tabs{
         top: 40px !important;
-        width: 98%;
+        width: 98% !important;
         left: -11px !important;
     }
 
