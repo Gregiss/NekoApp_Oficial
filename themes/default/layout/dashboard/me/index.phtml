@@ -115,9 +115,9 @@
    <div v-if="notificationWhere == 1">
    <h1 style="font-size: 22px;">Mensagens</h1>
 
-   <div class="scroll">
+   <div class="scroll" style="overflow-x: hidden; overflow-y: auto; height: 80%; border-radius: 20px;">
    <span v-for="user in users">
-   <li v-for="msg in myMsg" v-if="msg.id_user == user.id && msg.id_user !== myProfile.id " @click="chatComUser(user)" style="list-style: none;
+   <li v-for="msg in myMsg" v-if="msg.id_user == user.id && msg.id_user !== myProfile.id" @click="chatComUser(user)" style="list-style: none;
     background: var(--dark1);
     padding: 20px;
     position: relative;
@@ -136,7 +136,12 @@
     position: relative;
     white-space: pre-wrap;
     top: 3px;
-    width: 100%;">{{ msg.mensagem    }}</p>
+    width: 100%; display: none;">{{ msg.mensagem    }}</p>
+    <p style="left: -8px;
+    position: relative;
+    white-space: pre-wrap;
+    top: 3px;
+    width: 100%; "> Envie uma mensagem agora</p>
    </li>
    </span>
    </div>

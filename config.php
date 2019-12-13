@@ -24,5 +24,5 @@ $email = "nekoapp404@gmail.com";
 // Senha email for send email (GMAIL)
 $senhamail = "xande123";
 // Site URL
-$site_url = "http://177.0.197.174:3000"; // e.g (http://example.com)
+$site_url = "http://localhost:3000"; // e.g (http://example.com)
 ?>
