@@ -4,7 +4,7 @@ body{
 
 .tabs{
 	float: left;
-	width: 313px !important;
+	width: 19% !important;
 	height: calc(100% - 40px);
 	background: rgba(0,0,0,0.20);
 	border-radius: 5px;
@@ -17,6 +17,10 @@ body{
 	left: 0px;
 	transition: 0.4s;
 	white-space: nowrap;
+	display: list-item;
+	pointer-events: visiblestroke;
+	scroll-behavior: smooth;
+	scroll-padding-block: 20px;
 }
 
 .tabs .noti{
@@ -776,4 +780,57 @@ div{
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+.grupos{
+	width: 120px !important;
+	float: right;
+	right: 20px !important;
+	left: -20px !important;
+}
+
+.grupos .sugered .people{
+	display: block !important;
+	left: 15px !important;
+	margin-top: 10px;
+}
+
+
+.grupos .sugered{
+	width: auto;
+	height: 100% !important;
+}
+
+
+#me{
+	width: 20% !important;
+}
+
+.grupos span{
+	display: none
+}
+
+.tabs{
+	margin-left: 20px !important;
+}
+
+.list_feed img{
+	width: 100%;
+	height: auto !important;
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.enviargif{
+	width: 320px !important;
+	position: absolute !important;
+	box-shadow: 1px 2px 1px rgba(0,0,0,.40);
+	left: 70px !important;
+	bottom: 35px !important;
+;}
+
+.enviargif input{
+	background: #fefefe !important;
+	position: fixed;
+	color: #151515 !important;
 }

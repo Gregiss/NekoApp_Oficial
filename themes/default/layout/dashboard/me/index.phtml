@@ -112,10 +112,16 @@
    </div>
    </div>
 
+   <style>
+      #me{
+         overflow: hidden !important;
+      }
+   </style>
+
    <div v-if="notificationWhere == 1">
    <h1 style="font-size: 22px;">Mensagens</h1>
 
-   <div class="scroll" style="overflow-x: hidden; overflow-y: auto; height: 80%; border-radius: 20px;">
+   <div class="scroll" style="overflow-x: hidden; overflow-y: auto; height: calc(75% - 120px); border-radius: 20px;">
    <span v-for="user in users">
    <li v-for="msg in myMsg" v-if="msg.id_user == user.id && msg.id_user !== myProfile.id" @click="chatComUser(user)" style="list-style: none;
     background: var(--dark1);

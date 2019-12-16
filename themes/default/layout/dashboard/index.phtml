@@ -131,25 +131,10 @@ const app = new Vue({
       this.onde = 'feed';
       this.ocupado = false
       this.msgPrivada = false
-      $(".tabs").css("padding", "0px");
-		$(".fixed .links_rapido").css("color", "var(--white2)");
-		$( ".fixed .links_rapido" ).removeClass( "active" );
-		$(".tabs").css("left", "0px");
-		if(this.onde == "perfil"){
-         $("#me").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$("#me").css("width", "98%");
-		} else if(this.onde == "feed"){
-         $("#feed").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$("#feed").css("width", "98%");
-		} else if(this.onde == "grupos"){
-         $(".grupos").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$(".grupos").css("width", "98%");
-		}
-		$(this).css("color", "#fff");
-		$(this).addClass( "active" );
+      var width = screen.width
+      if(width < 900){
+         this.navegarTabs("feed")
+      }
    },
    chatComUser(user){
       this.msgPrivada = true
