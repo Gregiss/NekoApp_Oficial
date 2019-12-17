@@ -46,17 +46,19 @@
       <p v-if="mensagem.length == 0" v-if="!msgPrivada && !ocupado">Sem nenhuma mensagem no momento :/</p>
       <p v-if="mensagem.length > 0" class="animation_a" v-for="msg in mensagem" v-bind:key="msg.id">
       <span v-for="user in users">
-      <span style="cursor: pointer;" v-if="user.id === msg.id_user" @click="verEstranho(user)"> 
+      <span style="cursor: pointer;     cursor: pointer;
+    top: 0px;
+    left: 16px !important;" v-if="user.id === msg.id_user" @click="verEstranho(user)"> 
       <span v-if="user.id === selectServer.owner " style="
          background: var(--blue);
-         position: absolute;
-         left: 23px;
-         top: -10px;
-         z-index: 100;
-         color: #fff;
-         font-size: 18px;
-         padding: 2px;
-         border-radius: 1px;
+    position: absolute;
+    left: -5px !important;
+    top: 18px;
+    z-index: 100;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding: 2px;
+    border-radius: 1px;
       "><i class="fab fa-jedi-order"></i></span>
       <img v-if="user.avatar == '' || user.avatar == null" style="
          width: 35px;
@@ -77,8 +79,9 @@
          margin: 5px;
          border: 3px solid var(--dark1);" :src="user.avatar" alt="">
       {{ user.nome }} <span v-if="msg.mencionar > 0"> marcou </span> <span v-if="msg.mencionar > 0" v-for="user in users" >
-      <a @click="verEstranho(user)" style="color: var(--blue); cursor: pointer;" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
-      </span> -  </span> </span> <span v-if="msg.mencionar > 0"><i class="fas fa-quote-left"></i> </span> 
+      <a @click="verEstranho(user)" style="color: var(--blue); top: 20px; cursor: pointer;" class="user_name" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
+      </span>  </span> </span> <span v-if="msg.mencionar > 0"><i class="fas fa-quote-left"></i> </span> 
+      <br>
       {{  msg.mensagem }}
       <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt="">
        <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>
@@ -165,12 +168,14 @@
          {{ errorNu.titulo }}
       </div>
       <p v-if="mensagemPrivada.length == 0">Sem nenhuma mensagem no momento :/</p>
-      <p v-if="mensagemPrivada.length > 0" class="animation_a" v-for="msg in mensagemPrivada" v-bind:key="msg.id">
+      <p stlye="padding: 20px !important;" v-if="mensagemPrivada.length > 0 && msg.mensagem !== ''"class="animation_a" v-for="msg in mensagemPrivada" v-bind:key="msg.id">
       <span v-for="user in users" v-if="msg.id_user == user.id ">
-      <a style="cursor: pointer;" @click="verEstranho(user)">
+      <a style="
+    top: 0px;
+    left: 16px !important;" @click="verEstranho(user)">
       <img v-if="user.avatar == '' || user.avatar == null" style="
          width: 35px;
-         height: 35px;
+         height: 35px !important;
          border-radius: 5px;
          position:absolute;
          top: -18px;
@@ -179,16 +184,19 @@
          border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
          <img v-if="user.avatar !== ''" style="
          width: 35px;
-         height: 35px;
+         height: 35px !important;
          border-radius: 5px;
          position:absolute;
          top: -18px;
          left: 0px;
          margin: 5px;
          border: 3px solid var(--dark1);" :src="user.avatar" alt="">
-       {{ user.nome }}  - 
+         <span style="left: 30px; top: 0px;">
+       {{ user.nome }}</span>  
       </span>
-      <span> <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt=""> {{ msg.mensagem }} </span></a>
+      <br>
+      <!-- <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt=""> -->
+      <span style="top: -5px; left: 34px !important;">  {{ msg.mensagem }} </span></a>
    </div>
 
    <div class="bottom" v-if="msgPrivada && !ocupado">
@@ -228,7 +236,7 @@
     </div>
     <div class="mencionar scrollar" v-if="mencionar">
          <div class="user" v-for="user in users">
-          <p @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
+          <p class="user_name" @click="selectUser(user)" v-if="user.nome.includes(msg.replace('@', ''))"> <img style="height: 38px;
          width: 38px;
          position: absolute;
          top: 0px;

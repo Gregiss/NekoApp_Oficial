@@ -220,7 +220,7 @@ textarea::-webkit-scrollbar-thumb {
 #feed .list_feed p{
 	padding: 5px;
 	position: relative;
-	text-align: center;
+	text-align: left;
 	word-break: break-all;
 	white-space: pre-wrap;
 	background: var(--dark1);
@@ -833,4 +833,16 @@ div{
 	background: #fefefe !important;
 	position: fixed;
 	color: #151515 !important;
+}
+
+#feed .list_feed p span{
+	left: 10px !important;
+	position: relative;
+	top: -10px;
+}
+
+#feed .list_feed p span img{
+	left: -30px !important;
+	position: relative;
+	top: 10px !important;
 }
