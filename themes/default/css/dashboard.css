@@ -6,7 +6,7 @@ body{
 	float: left;
 	width: 19% !important;
 	height: calc(100% + 4px) !important;
-	background: var(--main-bg-color);
+	background: #202225 !important;
 	border-radius: 5px;
 	margin-left: 2px;
 	position: relative;
@@ -179,7 +179,8 @@ textarea::-webkit-scrollbar-thumb {
 	width: 100%;
 	height: 50px;
 	background: rgb(78, 85, 97);
-	border-radius: 5px;
+	border-radius: 0px;
+	padding: 0px;
 }
 
 #feed .feed span{
@@ -239,7 +240,7 @@ textarea::-webkit-scrollbar-thumb {
 #feed .sugered{
 	width: 100%;
 	height: 140px;
-	background: rgb(78, 85, 97);
+	background: #393f4a !important;
 	overflow-x: auto !important;
 	overflow-y: hidden;
 	top: 46px;
@@ -774,6 +775,7 @@ div{
 	left: -20px !important;
 	position: fixed;
 	top: 0px;
+	background: #202225 !important;
 }
 
 .grupos .sugered .people{
