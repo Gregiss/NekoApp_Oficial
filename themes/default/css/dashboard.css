@@ -5,8 +5,8 @@ body{
 .tabs{
 	float: left;
 	width: 19% !important;
-	height: calc(100% - 40px);
-	background: rgba(0,0,0,0.20);
+	height: calc(100% + 4px) !important;
+	background: var(--main-bg-color);
 	border-radius: 5px;
 	margin-left: 2px;
 	position: relative;
@@ -110,7 +110,7 @@ input{
 	padding: 10px;
 	white-space: nowrap;
 	height: auto;
-	height: calc(99% - 40px);
+	height: 100%;
 	width: 100%;
 	max-width: 200vw;
 	-webkit-overflow-scrolling: touch;
@@ -623,7 +623,9 @@ right i{
 		text-align: left;
 		overflow: auto;
 		height: auto;
-  }
+		white-space: normal;
+		width: 100% !important;
+		}
 
   .mencionar p{
 		margin: 10px;
@@ -749,10 +751,13 @@ div{
 }
 
 .gifsImg{
-	width: 100%;
-    height: auto;
-    display: block;
-    white-space: pre-wrap;
+	width: calc(20% - 20px);
+	height: auto;
+	display: inline-block;
+	position: relative;
+	max-height: 100px;
+	top: 34px;
+	margin: 10px;
 }
 
 .container{
@@ -767,6 +772,8 @@ div{
 	float: right;
 	right: 20px !important;
 	left: -20px !important;
+	position: fixed;
+	top: 0px;
 }
 
 .grupos .sugered .people{
@@ -783,7 +790,10 @@ div{
 
 
 #me{
-	width: 20% !important;
+	width: 320px !important;
+	left: 90px;
+	top: -12px;
+	height: calc(100% + 22px) !important;
 }
 
 .grupos span{
@@ -802,17 +812,20 @@ div{
 }
 
 .enviargif{
-	width: 320px !important;
+	width: 100% !important;
 	position: absolute !important;
 	box-shadow: 1px 2px 1px rgba(0,0,0,.40);
-	left: 70px !important;
-	bottom: 35px !important;
-;}
+	left: 0px !important;
+	bottom: 69px !important;
+	height: 700% !important;
+	}
 
 .enviargif input{
 	background: #fefefe !important;
 	position: fixed;
 	color: #151515 !important;
+	position: fixed !important;
+	z-index: 1000;
 }
 
 #feed .list_feed p span{
@@ -840,18 +853,21 @@ div{
     }
 
 	#feed{
-		width: 98% !important;
-		left: -25px !important;
+		width: 100% !important;
+		left: -15px !important;
+		position: fixed !important;
+		height: calc(100% + -38px) !important;
 	}
 
 	#me{
-		width: 98% !important;
-		left: -25px !important;
+		width: 100% !important;
+		left: -26px !important;
+		z-index: 4000 !important;
 	}
 
 	.grupos{
-		width: 98% !important;
-		left: -25px !important;
+		width: 100% !important;
+		left: -20px !important;
 	}
 
     body{

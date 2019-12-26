@@ -349,6 +349,14 @@ const app = new Vue({
       .get('/api/myMsg')
       .then(response => (this.myMsg = response.data))
    },
+   giphyClick(){
+   if(this.enviarGif){
+         this.enviarGif = false
+      } else{
+         this.enviarGif = true
+         this.searchTermApiGiphy = "Happy"
+      }
+   },
    apiGiphy(){
       if(this.searchTermApiGiphy == '' || this.searchTermApiGiphy == null){
          return;

@@ -1,4 +1,6 @@
-<div id="feed" class="tabs" style="    width: calc(83% - 264px) !important;">
+<div id="feed" class="tabs" style=" left: 70px;
+    top: -12px;
+    width: calc(100% - 442px) !important;">
    <img style="width: 100%; height: auto; position: absolute; top: 50px;" src="images/0f2e2af21f069bd7e25142bfb24cd46f.svg" alt="">
    <div class="feed" v-if="ocupado">
    <span>Você ficou muito tempo inativo</span>
@@ -62,7 +64,7 @@
       "><i class="fab fa-jedi-order"></i></span>
       <img v-if="user.avatar == '' || user.avatar == null" style="
          width: 35px;
-         height: 35px;
+         height: 35px !important;
          border-radius: 5px;
          position:absolute;
          top: -18px;
@@ -71,7 +73,7 @@
          border: 3px solid var(--dark1);" src="/themes/avatar.png" alt="">
          <img v-if="user.avatar !== ''" style="
          width: 35px;
-         height: 35px;
+         height: 35px !important;
          border-radius: 5px;
          position:absolute;
          top: -18px;
@@ -90,7 +92,7 @@
    <div class="bottom" v-if="!msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img @click="enviarGif = true" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="giphyClick" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msg" @keyup="detectMessage" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsg" style="
@@ -202,7 +204,7 @@
    <div class="bottom" v-if="msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img @click="enviarGif = true" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="giphyClick" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msgPrivadaT" @keyup.Enter="sendMsgPrivada" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsgPrivada" style="
