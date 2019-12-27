@@ -28,6 +28,11 @@ $(document).ready(function() {
 </script>
 
 <div id="app">
+
+<div class="mobile_t">
+   <i style="cursor: pointer;" @click="showBarPa" class="fas fa-bars"></i>
+</div>
+
 <div class="container">
 <div class="scroll" data-id="hori">
 <?php
@@ -87,6 +92,7 @@ var myId = "<?php echo $_COOKIE['iduser']?>";
 const app = new Vue({
  el: "#app",
  data:{
+   showBar: false,
    myId: myId,
    servers: [],
    selectServer: {"id" : -1, "name": "Amigos", "owner": "-1"},
@@ -126,6 +132,13 @@ const app = new Vue({
    gifSelecionado: ""
  },
  methods:{
+    showBarPa(){
+      if(this.showBar){
+         this.showBar = false
+      } else{
+         this.showBar = true
+      }
+    },
    serverSelect(server ){
       this.selectServer = server
       this.onde = 'feed';
@@ -253,23 +266,16 @@ const app = new Vue({
       },
    navegarTabs(onder){
       this.onde = onder;
-      $(".tabs").css("display", "none");
-      $(".tabs").css("padding", "0px");
 		$(".fixed .links_rapido").css("color", "var(--white2)");
 		$( ".fixed .links_rapido" ).removeClass( "active" );
-		$(".tabs").css("left", "0px");
 		if(this.onde == "perfil"){
          $("#me").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$("#me").css("width", "98%");
+			$("#me").css("width", "100%%");
+         $("#feed").css("display", "none");
 		} else if(this.onde == "feed"){
          $("#feed").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$("#feed").css("width", "98%");
-		} else if(this.onde == "grupos"){
-         $(".grupos").css("display", "block");
-			$(".tabs").css("width", "0%");
-			$(".grupos").css("width", "98%");
+			$("#feed").css("width", "100%");
+         $("#me").css("display", "none");
 		}
 		$(this).css("color", "#fff");
 		$(this).addClass( "active" );

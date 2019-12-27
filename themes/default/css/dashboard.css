@@ -844,45 +844,6 @@ div{
 }
 
 
-@media screen and (max-width: 992px){
-    .mobile{
-        display: block;
-    }
-
-    .tabs{
-        top: 40px !important;
-        width: 98% !important;
-        left: -22px !important;
-    }
-
-	#feed{
-		width: 100% !important;
-		left: -25px !important;
-		position: fixed !important;
-		height: calc(100% + -38px) !important;
-	}
-
-	#me{
-		width: 100% !important;
-		left: -33px !important;
-		z-index: 4000 !important;
-	}
-
-	.grupos{
-		width: 100% !important;
-		left: -20px !important;
-	}
-
-    body{
-        overflow: hidden;
-    }
-
-    .scroll{
-        height: calc(99% - 40px) !important;
-    }
-    
-}
-
 .grupos .sugered .people{
 	transform: scale(0.8);
 }
@@ -905,4 +866,55 @@ div{
 	background: #67a3e1;
 	top: 25%;
 	border-radius: 10px;
+}
+
+.mobile_t{
+	width: 100%;
+	background: #aebacf;
+	z-index: 10000;
+	position: fixed;
+	top: 0px;
+	padding: 15px;
+}
+
+
+@media screen and (max-width: 992px){
+    .mobile_t{
+        display: block;
+    }
+
+	.feedar{
+		width: 100% !important;
+		left: -25px !important;
+		position: fixed !important;
+		height: calc(100% + -38px) !important;
+	}
+
+	#me{
+		width: 100% !important;
+		left: -32px !important;
+		z-index: 4000 !important;
+	}
+
+	.grupos{
+		left: -200px !important;
+		height: 100%;
+		width: 90px !important;
+		z-index: 1000000;
+		top: 40px !important;
+	}
+
+    body{
+        overflow: hidden;
+    }
+
+    .scroll{
+        height: calc(99% - 40px) !important;
+        top: 45px;
+    }
+    
+}
+
+.ativoBar{
+	left: -24px !important;
 }
