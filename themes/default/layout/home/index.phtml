@@ -23,7 +23,7 @@
 <body class="home" onselectstart="return false" oncontextmenu="return false" ondragstart="return false" onMouseOver="window.status='..message perso .. '; return true;" >
   <div class="comecando">
     <center>
-    <div class="cadastrar">
+    <div class="cadastrar" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
     <div class="loading"><div class="step1"></div><div class="step2"></div><div class="step3"></div></div>
     <div class="nani"></div>
     <div class="error"><div class="after"></div></div>
@@ -51,10 +51,40 @@
     <span id="senha">Senha</span>
     <input type="password" id="senha-r" name="" data-span="senha" placeholder="Senha">
     </div>
+    <div class="input">
+    <p style="padding: 30px; font-size: 18px; text-align: left;">Você quer ser?</p>
+    <div class="who" id="professor">Professor</div>
+    <div class="who ativo_a" id="aluno">Aluno</div>
+    </div>
     <button id="cadastrarr" class="return_false">Cadastrar</button>
     </form>
     <button id="logar" class="return_false" data-href="/entrar">Fazer login</button>
     </div>
+
+    <style>
+    .who{
+      background: rgba(0,0,0,.40);
+      padding: 5px;
+      margin: 5px;
+      top: -20px;
+      position: relative;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .ativo_a{
+      background: rgba(0,0,0,.80);
+    }
+    </style>
+
+    <script>
+    var who = "Aluno";
+      $(".who").click(function(){
+        $(".who").removeClass("ativo_a");
+        who = $(this).html();
+        $(this).addClass("ativo_a");
+      });
+    </script>
 
     <div id="login" style="position: absolute; padding: 10px; top: 0px;  left: -200%; transition: 0.6s;">
     <img src="/themes/default/img/icons/game.svg" style="width: 250px; height: 250px; position: relative; top: -30px">

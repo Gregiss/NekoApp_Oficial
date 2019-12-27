@@ -40,11 +40,11 @@ function login_register(){
     anima_cadastrar();
     ativo = 0;
     }
-		 var emailr = $("#email-r").val();
+		    var emailr = $("#email-r").val();
          var senhar = $("#senha-r").val();
          var nomer = $("#nome-r").val();
          var sobrenomer = $("#sobrenome-r").val();
-		  $.post("/register", {email: emailr, senha: senhar, nome: nomer, sobrenome: sobrenomer},
+		  $.post("/register", {email: emailr, senha: senhar, nome: nomer, sobrenome: sobrenomer, oquer: who},
          function(data){
             if(data == '01'){
             	 var error = "Preencha os campos";
@@ -131,12 +131,13 @@ function anima_cadastrar(){
     var toper = top + "px";
     clicavel = 0;
     $(".nani").show();
+    $(".cadastrar").css("overflow-y", "hidden");
     $("#cadastrarr").css("background", "#2f353e");
     $("#cadastrarr").html("<div class='nani'></div>");
     $("#cadastrarr").css("background-size", "cover");
     $("#cadastrarr").css("border", "2px solid transparent");
-    $("#cadastrarr").css("width", "120px");
-    $("#cadastrarr").css("height", "120px");
+    $("#cadastrarr").css("width", "2120px");
+    $("#cadastrarr").css("height", "2120px");
     $("#cadastrarr").css("border-radius", "40%");
     $("#cadastrarr").css("z-index", "500");
     $("#cadastrarr").css("transform", "scale(8)");
@@ -148,9 +149,11 @@ function anima_cadastrar(){
   $("#cadastrarr").css("top", toper);
 }
 }, 100);
+$(".cadastrar").css("overflow-y", "auto");
 }
 
 function anima_login(){
+  $(".cadastrar").css("overflow", "hidden");
   $(".loading").show();
   $("#cadastrar").css("display", "none");
   var top = "0";
@@ -185,8 +188,8 @@ function anima_login(){
     $("#logarr").css("background-size", "cover");
     $("#logarr").html("<div class='nani'></div>");
     $("#logarr").css("border", "2px solid transparent");
-    $("#logarr").css("width", "120px");
-    $("#logarr").css("height", "120px");
+    $("#logarr").css("width", "2120px");
+    $("#logarr").css("height", "2120px");
     $("#logarr").css("border-radius", "40%");
     $("#logarr").css("z-index", "500");
     $("#logarr").css("transform", "scale(8)");
@@ -198,6 +201,7 @@ function anima_login(){
   $("#logarr").css("top", toper);
 }
 }, 100);
+$(".cadastrar").css("overflow-y", "auto");
 }
 
 function voltar_registro(){

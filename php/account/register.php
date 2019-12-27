@@ -6,6 +6,13 @@ $email = $_POST['email'];
 $senha = sha1($_POST['senha']);
 $senha = preg_replace('/[^[:alnum:]_]/', '',$senha);
 $cry = sha1($email);
+$oque = $_POST['oquer']; 
+
+if($oque == "Professor"){
+	$oque = "Professor";
+} else{
+	$oque = "Aluno";
+}
 
 
 if(isset($_COOKIE['iduser'],$_COOKIE['cry'])){
@@ -26,6 +33,9 @@ if(empty($_POST['email'])){
 if(empty($_POST['senha'])){
 		$status_senha = "0";
 }
+if(empty($_POST['oquer'])){
+	$status_senha = "0";
+}
 
 if (@$status_email == "0" OR @$status_senha == "0" OR @$status_nome == "0" OR @$status_sobrenome == "0") {
 	echo '01';
@@ -42,8 +52,8 @@ if(isset($resultado)){
 
 else{
 $nome = $_POST['nome'] . ' ' . $_POST['sobrenome'];
-$sql = "INSERT INTO user (idcry, email, senha, nome)
-VALUES ('".$cry."', '".$email."', '".$senha."', '".$nome."')";
+$sql = "INSERT INTO user (idcry, email, senha, nome, oque)
+VALUES ('".$cry."', '".$email."', '".$senha."', '".$nome."', '".$oque."')";
 if (mysqli_query($conn, $sql)) {
 	$result_usuario = "SELECT * FROM user WHERE email = '$email' && senha = '$senha' LIMIT 1";
 	$resultado_usuario = mysqli_query($conn, $result_usuario);
