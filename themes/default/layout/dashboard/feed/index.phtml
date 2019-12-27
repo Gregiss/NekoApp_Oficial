@@ -80,13 +80,13 @@
          left: 0px;
          margin: 5px;
          border: 3px solid var(--dark1);" :src="user.avatar" alt="">
-      {{ user.nome }} <span v-if="msg.mencionar > 0"> marcou </span> <span v-if="msg.mencionar > 0" v-for="user in users" >
+      {{ user.nome }} <span v-if="msg.mencionar == -2"> marcou <span v-if="msg.mencionar == -2" v-for="user in users" >
       <a @click="verEstranho(user)" style="color: var(--blue); top: 20px; cursor: pointer;" class="user_name" v-if="user.id === msg.mencionar">{{  user.nome }}</a></span></span>
-      </span>  </span> </span> <span v-if="msg.mencionar > 0"><i class="fas fa-quote-left"></i> </span> 
+      </span>  </span> </span> <span v-if="msg.mencionar == -2"><i class="fas fa-quote-left"></i>  </span></span> 
       <br>
       {{  msg.mensagem }}
       <img v-if="msg.imagem !== ''" style="width: 100%; height: 320px;" :src="msg.imagem" alt="">
-       <span v-if="msg.mencionar > 0">  <i class="fas fa-quote-right"></i> </span></p>
+       <span v-if="msg.mencionar == -2">  <i class="fas fa-quote-right"></i> </span></p>
    </div>
 
    <div class="bottom" v-if="!msgPrivada && !ocupado">

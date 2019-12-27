@@ -881,3 +881,11 @@ div{
     }
     
 }
+
+.msg_menc{
+	color: red;
+}
+
+.msg_normal{
+	color: red;
+}
