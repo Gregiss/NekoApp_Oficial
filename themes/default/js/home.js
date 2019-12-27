@@ -154,6 +154,7 @@ $(".cadastrar").css("overflow-y", "auto");
 
 function anima_login(){
   $(".cadastrar").css("overflow", "hidden");
+  $("#login").css("overflow", "hidden");
   $(".loading").show();
   $("#cadastrar").css("display", "none");
   var top = "0";
@@ -188,7 +189,7 @@ function anima_login(){
     $("#logarr").css("background-size", "cover");
     $("#logarr").html("<div class='nani'></div>");
     $("#logarr").css("border", "2px solid transparent");
-    $("#logarr").css("width", "2120px");
+    $("#logarr").css("width", "100%");
     $("#logarr").css("height", "2120px");
     $("#logarr").css("border-radius", "40%");
     $("#logarr").css("z-index", "500");
@@ -202,6 +203,7 @@ function anima_login(){
 }
 }, 100);
 $(".cadastrar").css("overflow-y", "auto");
+$("#login").css("overflow-y", "hidden");
 }
 
 function voltar_registro(){

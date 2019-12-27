@@ -12,7 +12,7 @@ if(isset($user)){
 $mysqli = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_name);
     $userId = $_COOKIE['iduser'];
     $myArray = array();
-    if ($result = $mysqli->query("SELECT id, nome, admin, status,avatar FROM user where id = '$userId'")) {
+    if ($result = $mysqli->query("SELECT id, nome, admin, status,avatar, reputacao, oque FROM user where id = '$userId'")) {
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {
         $myArray = $row;
         }

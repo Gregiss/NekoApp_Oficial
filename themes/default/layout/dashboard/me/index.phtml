@@ -56,6 +56,22 @@
       {{ myProfile.nome }}
       </span>
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
+      <br>
+      <div v-if="myProfile.oque == 'Professor'" style="position: absolute;
+    color: rgb(255, 255, 255);
+    top: 1px;
+    z-index: 1000;
+    background: #6980ca;
+    padding: 4px;"><i class="fas fa-chalkboard-teacher"></i></div>
+     <div v-else="" style="position: absolute;
+    color: rgb(255, 255, 255);
+    top: 1px;
+    z-index: 1000;
+    background: #6980ca;
+    padding: 4px;"><i class="fas fa-chalkboard"></i></div>
+      <span style="color: var(--white2); position: absolute; top: 70px; left: 95px; font-size: 17px;">
+      <i class="fas fa-medal"></i> - {{  myProfile.reputacao }}
+      </span>
       </div>
 
    <div class="newN" style="
@@ -120,7 +136,10 @@
 
    <div v-if="notificationWhere == 1">
    <h1 style="font-size: 22px;">Mensagens</h1>
-
+   <br>
+   <h2 style="font-size: 18px;" v-if="myMsg.length <= 0">
+   Nenhuma mensagem até agora
+   </h2>
    <div class="scroll" style="overflow-x: hidden; overflow-y: auto; height: 90%; border-radius: 20px;">
    <span v-for="user in users">
    <li v-for="msg in myMsg" v-if="msg.id_user == user.id && msg.id_user !== myProfile.id" @click="chatComUser(user)" style="list-style: none;
@@ -189,6 +208,21 @@
       {{ estranhoProfile.nome }}
       </span>
       <span style="color: var(--white2); position: absolute; top: 45px; left: 95px; font-size: 17px;">Um mero ser comum</span>
+      <br>
+      <div v-if="estranhoProfile.oque == 'Professor'" style="position: absolute;
+    color: rgb(255, 255, 255);
+    top: 1px;
+    z-index: 1000;
+    background: #6980ca;
+    padding: 4px;"><i class="fas fa-chalkboard-teacher"></i></div>
+     <div v-else="" style="position: absolute;
+    color: rgb(255, 255, 255);
+    top: 1px;
+    z-index: 1000;
+    background: #6980ca;
+    padding: 4px;"><i class="fas fa-chalkboard"></i></div>
+      <span style="color: var(--white2); position: absolute; top: 70px; left: 95px; font-size: 17px;">
+      <i class="fas fa-medal"></i> - {{  estranhoProfile.reputacao }}
       </div>
 
    <div style="

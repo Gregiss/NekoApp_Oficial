@@ -13,10 +13,13 @@ if(isset($user)){
 $mysqli = new mysqli($sql_db_host, $sql_db_user, $sql_db_pass, $sql_db_name);
 $eu = $_COOKIE['iduser'];
 if ($result = $mysqli->query("SELECT * FROM msg where id_quem = '$eu' group by id_user")) {
+        if(isset($result)){
+           $myArray = array();
             while($row = $result->fetch_array(MYSQLI_ASSOC)) {
                     $myArray[] = $row;
             }
             echo json_encode($myArray);
+        }
 }
 }
 }
