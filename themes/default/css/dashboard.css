@@ -935,3 +935,8 @@ div{
 .newServer{
 	z-index: 10000000000 !important;
 }
+
+.hpeo:active{
+	top: -1px;
+    position: relative;
+}
