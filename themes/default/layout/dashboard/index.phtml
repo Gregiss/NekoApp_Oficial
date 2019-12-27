@@ -147,6 +147,7 @@ const app = new Vue({
       var width = screen.width
       if(width < 900){
          this.navegarTabs("feed")
+         this.showBar = false
       }
    },
    chatComUser(user){
@@ -157,6 +158,7 @@ const app = new Vue({
       var width = screen.width;
       if(width < 900){
          this.navegarTabs("feed")
+         this.showBar = false
       }
       console.log(width)
    },
@@ -366,6 +368,11 @@ const app = new Vue({
    selectFriends(){
       this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
       this.ocupado = true
+      var width = screen.width
+      if(width < 900){
+      this.navegarTabs('perfil')
+      this.showBar = false
+      }
    },
    apiGiphy(){
       if(this.searchTermApiGiphy == '' || this.searchTermApiGiphy == null){
