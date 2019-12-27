@@ -803,7 +803,7 @@ div{
 }
 
 .tabs{
-	margin-left: 20px !important;
+	margin-left: 23px !important;
 }
 
 .list_feed img{
@@ -851,19 +851,19 @@ div{
     .tabs{
         top: 40px !important;
         width: 98% !important;
-        left: -11px !important;
+        left: -22px !important;
     }
 
 	#feed{
 		width: 100% !important;
-		left: -15px !important;
+		left: -25px !important;
 		position: fixed !important;
 		height: calc(100% + -38px) !important;
 	}
 
 	#me{
 		width: 100% !important;
-		left: -26px !important;
+		left: -33px !important;
 		z-index: 4000 !important;
 	}
 
