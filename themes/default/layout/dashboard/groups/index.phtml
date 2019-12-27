@@ -1,5 +1,4 @@
 
-
 <div id="feed" class="tabs grupos" data-id="top">
    <div class="feed">
       <span><i class="fas fa-layer-group"></i>     Servidores </span>
@@ -7,7 +6,17 @@
    </div>
    <span style="color: var(--white2); padding: 10px; position: absolute; top: 40px; z-index: 2;">Em alta</span>
    <div class="sugered">
-   	<div class="people" @click="serverSelect(server)" v-for="server in servers">
+   <div class="people" @click="selectFriends" :class="{ativo_server : selectServer.id == -1}" style="background: rgb(105, 128, 202);
+    border: 3px solid rgb(180, 191, 212);
+    left: -3px !important;
+    width: 65px;
+    height: 65px;" >
+       <i style="font-size: 30px; color: #fff; padding: 19px 15px;" class="fas fa-users"></i>
+	</div>
+   <br>
+   <div style="width: 60%; height: 2px; background: rgba(0,0,0,.40); position: relative; left: 20%; top: 10px;"></div>
+   <br>
+   	<div class="people" :class="{ativo_server : selectServer.id == server.id}" @click="serverSelect(server)" v-for="server in servers">
          <img v-if="!server.imagem == '' || !server.imagem == null " style="width: 100%; height: 100%; border-radius: 50%;" :src="server.imagem" alt="">
          <h1 v-else="">{{ server.id }}</h1>
 	</div>

@@ -89,7 +89,7 @@ const app = new Vue({
  data:{
    myId: myId,
    servers: [],
-   selectServer: {"id" : 1, "name": "Global", "owner": "3"},
+   selectServer: {"id" : -1, "name": "Amigos", "owner": "-1"},
    mensagem: [],
    msg: "",
    users: [],
@@ -356,6 +356,10 @@ const app = new Vue({
          this.enviarGif = true
          this.searchTermApiGiphy = "Happy"
       }
+   },
+   selectFriends(){
+      this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
+      this.ocupado = true
    },
    apiGiphy(){
       if(this.searchTermApiGiphy == '' || this.searchTermApiGiphy == null){
