@@ -1,4 +1,4 @@
-   <div id="me" class="tabs" data-id="top">
+<div id="me" class="tabs" data-id="top">
    <div v-if="selectServer.id >= -1">
    <img src="images/00be7f6ca68f1915a80ae01f061718e5.svg" style="width: 105%; height: auto; position: absolute; top: 200px; left: 0px;" alt="">
    <div class="noti">
@@ -19,8 +19,11 @@
     background: #26272b;
     z-index: 50000 !important;">
     <h1 style="padding: 10px; font-size: 18px;">Buscas para {{ searchTerm }} </h1>
-         <div @click="verEstranho(user)" class="user" v-for="user in users" v-if="user.nome.includes(searchTerm.replace('@', ''))">
          
+         <div :class="{ escondeu: escondeProfessor } " @click="esconderAluno" style="background: rgba(0,0,0,.40);
+    padding: 10px; transition: 1s; cursor: pointer;">
+    <h2 style="padding: 10px; font-size: 18px; margin-top: 5px;">Professores</h2>
+         <div @click="verEstranho(user)" class="user" v-for="user in users" v-if="user.nome.includes(searchTerm) && user.oque == 'Professor'">
           <p > <img style="height: 38px;
          width: 38px;
          position: absolute;
@@ -30,6 +33,23 @@
          position: absolute;
          top: 0px;
          left: 0px;" v-if="user.avatar !== ''" :src="user.avatar" alt=""> {{ user.nome }}</p>
+         </div>
+         </div>
+         
+         <div :class="{ escondeu: escondeAluno }" style="background: rgba(0,0,0,.40);
+    padding: 10px; margin-top: 5px; cursor: pointer; transition: 1s;" @click="esconderProfessor">
+    <h2 style="padding: 10px; font-size: 18px;">Alunos</h2>
+         <div @click="verEstranho(user)" class="user" v-for="user in users" v-if="user.nome.includes(searchTerm) && user.oque == 'Aluno'">
+          <p > <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar == ''" src="/themes/avatar.png" alt=""> <img style="height: 38px;
+         width: 38px;
+         position: absolute;
+         top: 0px;
+         left: 0px;" v-if="user.avatar !== ''" :src="user.avatar" alt=""> {{ user.nome }}</p>
+         </div>
          </div>
    </div>
 

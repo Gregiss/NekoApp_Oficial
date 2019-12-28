@@ -129,7 +129,9 @@ const app = new Vue({
    searchTermApiGiphy: "",
    gifs: [],
    enviarGif: false,
-   gifSelecionado: ""
+   gifSelecionado: "",
+   escondeAluno: false,
+   escondeProfessor: false
  },
  methods:{
     showBarPa(){
@@ -137,6 +139,20 @@ const app = new Vue({
          this.showBar = false
       } else{
          this.showBar = true
+      }
+    },
+    esconderProfessor(){
+      if(this.escondeAluno){
+         this.escondeAluno = false
+      } else {
+         this.escondeAluno = true
+      }
+    },
+    esconderAluno(){
+      if(this.escondeProfessor){
+         this.escondeProfessor = false
+      } else {
+         this.escondeProfessor = true
       }
     },
    serverSelect(server ){

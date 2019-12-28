@@ -978,3 +978,8 @@ img{
 	height: 100%;
 	background-size: cover;
 }
+
+.escondeu{
+	height: 40px !important;
+	overflow: hidden;
+}
