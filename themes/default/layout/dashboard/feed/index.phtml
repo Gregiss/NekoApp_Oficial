@@ -3,13 +3,9 @@
     width: calc(100% - 401px) !important;">
    <img style="width: 100%; height: auto; position: absolute; top: 50px;" src="images/0f2e2af21f069bd7e25142bfb24cd46f.svg" alt="">
    <div class="feed" v-if="ocupado">
-   <span>Entre em um servidor, ou envie um mensagem privada</span>
+   <span>Página Inicial</span>
    </div>
-   <div class="list_feed"  v-if="ocupado">
-      <p style="left: 0px; font-size: 25px; position: relative;">
-      Entre um servidor, ou mande uma mensagem
-      </p>
-   </div>
+   
    <div class="feed" v-if="!msgPrivada && !ocupado">
    <button style="z-index: 550;
     position: absolute;
@@ -23,7 +19,7 @@
     right: 11px;
     float: right;
     z-index: 5000;
-    cursor: pointer;" @click="ocupado = true"><i class="fas fa-arrow-left"></i></button>
+    cursor: pointer;" @click="BackToHollow"><i class="fas fa-arrow-left"></i></button>
       <span><i class="fas fa-server"></i>          <nani id="group">{{ selectServer.name }}</nani> / Chat geral</span>
       <span style="
          float: right;
@@ -154,7 +150,7 @@
     right: 11px;
     float: right;
     z-index: 5000;
-    cursor: pointer;" @click="ocupado = true"><i class="fas fa-arrow-left"></i></button>
+    cursor: pointer;" @click="BackToHollow"><i class="fas fa-arrow-left"></i></button>
       <span> <nani id="group">{{ msgPrivadaUser.nome }}</nani> </span>
    </div>
    <div class="list_feed" v-if="msgPrivada && !ocupado">

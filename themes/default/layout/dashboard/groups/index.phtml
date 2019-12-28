@@ -6,7 +6,7 @@
    </div>
    <span style="color: var(--white2); padding: 10px; position: absolute; top: 40px; z-index: 2;">Em alta</span>
    <div class="sugered">
-   <a class="hpeo"><div class="people" @click="selectFriends" :class="{ativo_server : selectServer.id == -1}" style="background: rgb(105, 128, 202);
+   <a class="hpeo"><div class="people dont_ativoaa" @click="selectFriends" :class="{ativo_server : selectServer.id == -1}" style="background: rgb(105, 128, 202);
     border: 3px solid rgb(180, 191, 212);
     left: -3px !important;
     width: 65px;
@@ -17,7 +17,7 @@
    <div style="width: 60%; height: 2px; background: rgba(0,0,0,.40); position: relative; left: 20%; top: 10px;"></div>
    <br>
    <a class="hpeo" v-for="server in servers">
-   <div class="people" :class="{ativo_server : selectServer.id == server.id}" @click="serverSelect(server)">
+   <div class="people dont_ativoaa" :class="{ativo_server : selectServer.id == server.id}" @click="serverSelect(server)">
          <img v-if="!server.imagem == '' || !server.imagem == null " style="width: 100%; height: 100%; border-radius: 50%;" :src="server.imagem" alt="">
          <h1 v-else="">{{ server.id }}</h1>
 	</div> </a>

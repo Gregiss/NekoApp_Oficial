@@ -121,7 +121,7 @@ const app = new Vue({
    newsBa: [],
    friends: [],
    msgPrivada: false,
-   msgPrivadaUser: {},
+   msgPrivadaUser: {"id": -1},
    mensagemPrivada: [],
    ocupado: true,
    msgPrivadaT: "",
@@ -145,22 +145,27 @@ const app = new Vue({
       this.ocupado = false
       this.msgPrivada = false
       var width = screen.width
+      document.title = "#"+this.selectServer.name;
       if(width < 900){
          this.navegarTabs("feed")
          this.showBar = false
       }
+      localStorage.setItem('onde',JSON.stringify(server))
+      localStorage.setItem('tipo', 'server');
    },
    chatComUser(user){
       this.msgPrivada = true
       this.msgPrivadaUser = user
+      localStorage.setItem('tipo', 'chat_privado');
+      localStorage.setItem('onde', JSON.stringify(user))
       this.onde = 'feed';
       this.ocupado = false
       var width = screen.width;
+      document.title = "@"+ this.msgPrivadaUser.nome;
       if(width < 900){
          this.navegarTabs("feed")
          this.showBar = false
       }
-      console.log(width)
    },
    showMensagem(){
       if(!this.ocupado){
@@ -244,11 +249,26 @@ const app = new Vue({
          }
       }
       this.notifications[0].count = count1;
-      if(this.notifications[0].count > 0){
-      document.title = this.notifications[0].count +" novas notificações  | NekoApp - Página Inicial";
-      } else{
-         document.title = "NekoApp - Página Inicial";
-      }
+      if(this.selectServer.id === -1){
+         if(this.msgPrivadaUser.id === -1){    
+            } else{
+               document.title = "@"+ this.msgPrivadaUser.nome;
+            }
+         }
+         if(this.selectServer.id !== -1){
+            document.title = "NekoApp | #"+this.selectServer.name;
+         } else{
+            if(this.msgPrivadaUser.id === -1){  
+               document.title = "NekoApp - Página Inicial";  
+            } else{
+               document.title = "@"+ this.msgPrivadaUser.nome;
+            }
+            
+         }
+         if(this.notifications[0].count > 0){
+         document.title = this.notifications[0].count +" novas notificações  | NekoApp - Página Inicial";
+       } 
+      
    },
    novoServer(){
       if(this.serverName == "" || this.serverName == null){
@@ -373,6 +393,7 @@ const app = new Vue({
       this.navegarTabs('perfil')
       this.showBar = false
       }
+      localStorage.setItem('onde',JSON.stringify(this.selectServer))
    },
    apiGiphy(){
       if(this.searchTermApiGiphy == '' || this.searchTermApiGiphy == null){
@@ -399,16 +420,47 @@ const app = new Vue({
          this.error = response.data
       ))
       }
+   },
+   BackToHollow(){
+      this.ocupado = true
+      this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
+      this.msgPrivadaUser.id = -1
+   },
+   ondeEstouMount(){
+      var onde = localStorage.onde ? JSON.parse(localStorage.onde) : {"id" : -1, "name": "Amigos", "owner": "-1"};
+      var type = localStorage.tipo;
+      if(onde.id === -1 || onde.owner === -1){
+         this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
+         this.ocupado = true
+         var width = screen.width
+         if(width < 900){
+         this.navegarTabs('perfil')
+         this.showBar = false
+         }
+      } else{
+         if(type == "chat_privado"){
+         if(onde.nome !== null || onde.nome !== ""){
+            this.chatComUser(onde)
+         } 
+      } else{
+         if(onde.name !== null | onde.name !== ""){
+            this.serverSelect(onde)
+         } 
+      }
    }
  },
+},
  mounted () {
+    this.ondeEstouMount();
     this.myProfileGet();
     this.showServer();
     this.allUsers();
+    setInterval(() => {
+      this.validarNoti();
+    }, 100);
          setInterval(() => {  
             this.showMensagem();
             this.showNoti();
-            this.validarNoti();
             this.myMsgReceive();
          }, 2000);
          setInterval(() => {  

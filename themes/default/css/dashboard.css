@@ -769,6 +769,18 @@ div{
     overflow: hidden;
 }
 
+.dont_ativoaa::after{
+	content: '';
+	position: absolute;
+	left: -24px;
+	width: 20px;
+	height: 30%;
+	background: #b9c3d4;
+	top: 35%;
+	border-radius: 10px;
+	transition: 1s;
+}
+
 .grupos{
 	width: 78px !important;
 	float: right;
@@ -863,9 +875,10 @@ div{
 	left: -24px;
 	width: 20px;
 	height: 50%;
-	background: #67a3e1;
+	background: #b9c3d4;
 	top: 25%;
 	border-radius: 10px;
+	transition: 1s;
 }
 
 .mobile_t{
