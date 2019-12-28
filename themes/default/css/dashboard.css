@@ -868,6 +868,9 @@ div{
 	color: red;
 }
 
+img{
+	transition: 1s;
+}
 
 .ativo_server::after{
 	content: '';
@@ -879,6 +882,14 @@ div{
 	top: 25%;
 	border-radius: 10px;
 	transition: 1s;
+}
+
+.ativo_server{
+	border-radius: 25px !important;
+}
+
+.ativo_server img{
+	border-radius: 25px !important;
 }
 
 .mobile_t{
