@@ -6,7 +6,7 @@ body{
 	float: left;
 	width: 19% !important;
 	height: calc(100% + 4px) !important;
-	background: #202225 !important;
+	background: #202225;
 	border-radius: 5px;
 	margin-left: 2px;
 	position: relative;
@@ -17,7 +17,7 @@ body{
 	left: 0px;
 	transition: 0.4s;
 	white-space: nowrap;
-	display: list-item;
+	display: inline-block;
 	pointer-events: visiblestroke;
 	scroll-behavior: smooth;
 	scroll-padding-block: 20px;
@@ -157,12 +157,12 @@ input{
 }
  
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.66);
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,.90);
-  outline: 1px solid rgba(0,0,0,.1);
+  background-color: rgba(0, 0, 0, 0.64);
+  outline: 1px solid rgba(0, 0, 0, 0.59);
 }
 
 textarea::-webkit-scrollbar-track {
@@ -175,7 +175,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .feed{
-	position: sticky;
+	position: relative;
 	width: 100%;
 	height: 50px;
 	background: rgb(78, 85, 97);
@@ -240,7 +240,7 @@ textarea::-webkit-scrollbar-thumb {
 #feed .sugered{
 	width: 100%;
 	height: 140px;
-	background: #393f4a !important;
+	background: #202225 !important;
 	overflow-x: auto !important;
 	overflow-y: hidden;
 	top: 46px;
@@ -322,11 +322,11 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .tabs::-webkit-scrollbar-track {
-    -webkit-box-shadow: transparent;
+    -webkit-box-shadow: #000;
 }
 
 .tabs::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: #000000bd;
   outline: transparent;
 }
  
@@ -335,8 +335,9 @@ textarea::-webkit-scrollbar-thumb {
 }
  
 .tabs::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,.90);
+  background-color: #111213;
   outline: 1px solid rgba(0,0,0,.1);
+  height: 10px;
 }
 
 .back_profile{
@@ -809,6 +810,7 @@ div{
 	left: 48px;
 	top: -12px;
 	height: calc(100% + 22px) !important;
+	background: #36393f !IMPORTANT;
 }
 
 .grupos span{
