@@ -1,7 +1,7 @@
 <div id="feed" class="tabs feedar" style=" left: 27px;
     top: -12px;
     width: calc(100% - 401px) !important;">
-   <img style="width: 100%; height: auto; position: absolute; top: 50px;" src="images/0f2e2af21f069bd7e25142bfb24cd46f.svg" alt="">
+   <img style="width: 100%; height: auto; position: absolute; top: 50px;" src="./images/0f2e2af21f069bd7e25142bfb24cd46f.svg" alt="">
    <div class="feed" v-if="ocupado">
    <span>Página Inicial</span>
 
@@ -104,7 +104,7 @@
    <div class="bottom" v-if="!msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img @click="giphyClick" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="giphyClick" src="./images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msg" @keyup="detectMessage" @keyup.Enter="sendMsg" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsg" style="
@@ -216,7 +216,7 @@
    <div class="bottom" v-if="msgPrivada && !ocupado">
    <div class="post">
    <div class="top_a">
-      <img @click="giphyClick" src="images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
+      <img @click="giphyClick" src="./images/7fe83c179ad0b8a37b90bf06676becd5.svg" alt="">
    </div>
       <input v-model="msgPrivadaT" @keyup.Enter="sendMsgPrivada" name="" id="" cols="30" rows="10" placeholder="Envie uma mensagem" style="position: absolute; left: 0px; top: 0px; height: 100%; padding: 10px; top: 0px; width: 100%; padding-right: 40px; background: transparent; color: #fff; font-size: 18px;"/>
       <button  @click="sendMsgPrivada" style="

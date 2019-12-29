@@ -443,6 +443,15 @@ const app = new Vue({
       this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
       this.msgPrivadaUser.id = -1
    },
+   backInicialOw(){
+      this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
+         this.ocupado = true
+         var width = screen.width
+         if(width < 900){
+         this.navegarTabs('perfil')
+         this.showBar = false
+         }
+   },
    ondeEstouMount(){
       var onde = localStorage.onde ? JSON.parse(localStorage.onde) : {"id" : -1, "name": "Amigos", "owner": "-1"};
       var type = localStorage.tipo;
@@ -457,21 +466,33 @@ const app = new Vue({
       } else{
          if(type == "chat_privado"){
          if(onde.nome !== null || onde.nome !== ""){
+            var b = this.users;
+            if(b.some(b => b.id === onde.id)){
             this.chatComUser(onde)
+            } else{
+               this.backInicialOw()
+            }
          } 
       } else{
          if(onde.name !== null | onde.name !== ""){
-            this.serverSelect(onde)
+            var b = this.servers;
+            if(b.some(b => b.id === onde.id)){
+               this.serverSelect(onde)
+            } else{
+               this.backInicialOw()
+            }
          } 
       }
    }
  },
 },
  mounted () {
-    this.ondeEstouMount();
-    this.myProfileGet();
+   this.myProfileGet();
     this.showServer();
     this.allUsers();
+    setTimeout(() => {
+    this.ondeEstouMount();
+    }, 2000);
     setInterval(() => {
       this.validarNoti();
     }, 100);

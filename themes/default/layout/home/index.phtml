@@ -28,7 +28,7 @@
     <div class="nani"></div>
     <div class="error"><div class="after"></div></div>
     <div id="registro" style="position: absolute; padding: 10px; top: 0px; <?php if(isset($_GET['entrar'])){?> left: -200%; <?php } else{ echo 'left: 0%;'; }  ?>  <?php if(isset($_COOKIE['verificar'])){?> left: -200%; <?php } else{ echo 'left: 0%;'; } ?>transition: 0.6s;">
-    <img src="/themes/default/img/icons/castelinho.svg" style="width: 250px; height: 200px; position: relative; top: -30px">
+    <img src="<?php echo $site_url;?>/themes/default/img/icons/castelinho.svg" style="width: 250px; height: 200px; position: relative; top: -30px">
     <h1 style="margin-top: 0px; font-size: 32px; position: relative; top: -10px; font-weight: normal;">Cadastra-se, e desfrute de tudo</h1>
     <form>
     <div class="input">
@@ -87,7 +87,7 @@
     </script>
 
     <div id="login" style="max-height: 100%;position: absolute; padding: 10px; top: 0px;  left: -200%; transition: 0.6s;overfloy-x: hidden !important;">
-    <img src="/themes/default/img/icons/game.svg" style="width: 250px; height: 250px; position: relative; top: -30px">
+    <img src="<?php echo $site_url;?>//themes/default/img/icons/game.svg" style="width: 250px; height: 250px; position: relative; top: -30px">
     <h1 style="margin-top: 0px; font-size: 32px; position: relative; top: -10px; font-weight: normal;">Efetuando login,desfrute de tudo</h1>
     <form>
     <div class="input">
@@ -106,7 +106,7 @@
     </div>
 
     <div id="verificar" style="position: absolute; padding: 10px; top: 0px; <?php if(isset($_COOKIE['verificar'])){?> left: 0%; <?php } else{ echo 'left: 200%;'; } ?> transition: 0.6s;">
-    <img src="/themes/default/img/icons/key.svg" style="width: 150px; height: 150px; position: relative; top: -40px; margin-top: 60px;">
+    <img src="<?php echo $site_url;?>//themes/default/img/icons/key.svg" style="width: 150px; height: 150px; position: relative; top: -40px; margin-top: 60px;">
     <h1 style="margin-top: 0px; font-size: 32px; position: relative; top: -10px; font-weight: normal;">Verifique seu e-mail, por gentileza</h1>
     <form>
     <div class="input">

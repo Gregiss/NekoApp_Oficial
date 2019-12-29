@@ -346,7 +346,7 @@ textarea::-webkit-scrollbar-thumb {
 	position: relative;
 	top: 0px;
 	background-size: cover;
-	background-image: url('/images/976b56da8d86af63aef4f55afb553a9f.png');
+	background-image: url('/./images/976b56da8d86af63aef4f55afb553a9f.png');
 }
 
 .back_profile::after{
