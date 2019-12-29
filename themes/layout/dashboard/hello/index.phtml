@@ -1,7 +1,0 @@
-<div class="fixed mobile">
-	<a class="links_rapido" @click="navegarTabs('perfil')" >Perfil <div class="count_b" v-if="notifications[0].count == 0">
-       <span v-if="notifications[0].count >= 99">+99</span> <span v-else="">{{ notifications[0].count }}</span>
-      </div></a>
-	<a class="links_rapido" @click="navegarTabs('feed')">Feed</a>
-	<a class="links_rapido" @click="navegarTabs('grupos')">Grupos</a>
-</div>
