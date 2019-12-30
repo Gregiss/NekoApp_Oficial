@@ -17,7 +17,7 @@ body{
 	left: 0px;
 	transition: 0.4s;
 	white-space: nowrap;
-	display: inline-block;
+	display: block;
 	pointer-events: visiblestroke;
 	scroll-behavior: smooth;
 	scroll-padding-block: 20px;
@@ -241,7 +241,7 @@ textarea::-webkit-scrollbar-thumb {
 #feed .sugered{
 	width: 100%;
 	height: 140px;
-	background: #202225 !important;
+	background: #1c1d1e !important;
 	overflow-x: hidden;
 	overflow-y: auto;
 	top: 46px;
@@ -273,7 +273,7 @@ textarea::-webkit-scrollbar-thumb {
 	width: 100%;
 	position: fixed;
 	height: 40px;
-	background: rgb(78, 85, 97);
+	background: rgb(87, 101, 121);
 	top: 0px;
 	left: 0px;
 	padding: 2px;
@@ -1014,21 +1014,24 @@ img{
 }
 
 .name_option{
-	position: absolute;
+	position: fixed;
 	width: 90px;
 	height: auto;
-	background-color: #131416;
+	background-color: #fff;
 	color: #fff;
-	left: -9px;
-	z-index: 1000000;
+	left: 76px;
+	z-index: 1000000 !important;
 	display: inline;
-	transform: scale(0.65);
-	border-radius: 10px;
+	transform: scale(0.8);
+	border-radius: 0px;
 	text-align: center;
+	margin-top: -30px;
+	color: #151515;
+	border-radius: 4px 1px 4px 5px;
 }
 
 .name_option p{
-	color: #fff;
+	color: #151515;
 	padding: 6px 12px;
 	text-transform: uppercase;
 	white-space: pre-wrap;
@@ -1037,7 +1040,6 @@ img{
 
 .name_option{
 	opacity: 0;
-	z-index: -1000;
 }
 
 .hover_ativo .name_option{
