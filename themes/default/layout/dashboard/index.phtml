@@ -144,10 +144,10 @@ const app = new Vue({
          this.showBar = true
       }
     },
-    mouseOutServer(server){
+   mouseOutServer(server){
       this.serverHover = server
-    },
-    mouseOverServer(server){
+   },
+   mouseOverServer(server){
       this.serverHover = {}
    },
    mouseOutChatFriend(user){
@@ -170,7 +170,7 @@ const app = new Vue({
          this.escondeProfessor = true
       }
     },
-   serverSelect(server ){
+   serverSelect(server){
       this.selectServer = server
       this.onde = 'feed';
       this.ocupado = false
@@ -183,7 +183,6 @@ const app = new Vue({
       }
       localStorage.setItem('onde',JSON.stringify(server))
       localStorage.setItem('tipo', 'server');
-      this.serverHover = server
    },
    chatComUser(user){
       this.msgPrivada = true
@@ -204,6 +203,7 @@ const app = new Vue({
       } else{
          this.chatAtivos.push(user)
       }
+      localStorage.setItem('chat_ativos', JSON.stringify(this.chatAtivos))
    },
    showMensagem(){
       if(!this.ocupado){
@@ -476,6 +476,7 @@ const app = new Vue({
    },
    ondeEstouMount(){
       var onde = localStorage.onde ? JSON.parse(localStorage.onde) : {"id" : -1, "name": "Amigos", "owner": "-1"};
+      this.chatAtivos = localStorage.chat_ativos ? JSON.parse(localStorage.chat_ativos) : [];
       var type = localStorage.tipo;
       if(onde.id === -1 || onde.owner === -1){
          this.selectServer = {"id" : -1, "name": "Amigos", "owner": "-1"}
@@ -506,7 +507,7 @@ const app = new Vue({
          } 
       }
    }
- },
+ }
 },
  mounted () {
    this.myProfileGet();
