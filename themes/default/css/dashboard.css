@@ -987,9 +987,14 @@ img{
 	overflow: hidden;
 }
 
+.hover_ativo{
+	z-index: 1000000;
+	position: relative;
+}
+
 .hover_ativo::after{
 	content: '';
-	position: absolute;
+	position: relative;
 	left: -2px;
 	width: 8px;
 	height: 36px;
@@ -1015,10 +1020,15 @@ img{
 	background-color: #131416;
 	color: #fff;
 	left: 0px;
-	z-index: 10000;
+	z-index: 1000000;
 	display: inline;
 	transform: scale(0.8);
 	border-radius: 10px;
+}
+
+.hpeo{
+	z-index: 100000 !important;
+	position: relative;
 }
 
 .name_option p{

@@ -1,33 +1,47 @@
 
 <div id="feed" class="tabs grupos" :class="{ativoBar: showBar}" data-id="top">
-   <div class="feed">
-      <span><i class="fas fa-layer-group"></i>     Servidores </span>
-	  <right><i class="fas fa-plus-square" @click="newServer = true"></i><right>
-   </div>
-   <span style="color: var(--white2); padding: 10px; position: absolute; top: 40px; z-index: 2;">Em alta</span>
-   <div class="sugered">
-   <a class="hpeo">
-   
-      <div class="people dont_ativoaa" @click="selectFriends" :class="{ativo_server : selectServer.id == -1}" style="background: rgb(105, 128, 202);
-    border: 3px solid rgb(180, 191, 212);
-    left: -3px !important;
-    width: 65px;
-    height: 65px;" >
-       <i style="font-size: 30px; color: #fff; padding: 19px 15px;" class="fas fa-users"></i>
-	</div></a>
-   <br>
-   <div style="width: 60%; height: 2px; background: rgba(0,0,0,.40); position: relative; left: 20%; top: 10px;"></div>
-   <br>
-   <a class="hpeo" v-for="server in servers">
-   <div  v-on:mouseover="mouseOut(server)" v-on:mouseleave="mouseOver(server)" :class="{hover_ativo : serverHover == server}"  >
-   <div class="people dont_ativoaa" @click="serverSelect(server)" :class="{ativo_server : selectServer.id == server.id}" >
-         <img v-if="!server.imagem == '' || !server.imagem == null " style="width: 100%; height: 100%; border-radius: 50%;" :src="server.imagem" alt="">
-         <h1 v-else="">{{ server.id }}</h1>
-   </div> 
-   <div class="name_option">
-      <p>{{ server.name }}</p>
-   </div> 
-   <div> </a>
-   </div>
+      <div class="feed">
+            <span><i class="fas fa-layer-group"></i>     Servidores </span>
+         <right><i class="fas fa-plus-square" @click="newServer = true"></i><right>
+         </div>
+         <span style="color: var(--white2); padding: 10px; position: absolute; top: 40px; z-index: 2;">Em alta</span>
+         <div class="sugered">
+         <a class="hpeo">
+         <div class="people dont_ativoaa" @click="selectFriends" :class="{ativo_server : selectServer.id == -1}" style="background: rgb(105, 128, 202);
+         border: 3px solid rgb(180, 191, 212);
+         left: -3px !important;
+         width: 65px;
+         height: 65px;" >
+            <i style="font-size: 30px; color: #fff; padding: 19px 15px;" class="fas fa-users"></i>
+         </div></a>
+         
+         <a class="hpeo" v-for="chat in chatAtivos">
+            <div class="people dont_ativoaa" style="margin-top: 12px; !important">
+               <div v-for="user in users" v-if="chat.id == user.id && chat.id !== myProfile.id" 
+               v-on:mouseover="mouseOutChatFriend(user)" @click="chatComUser(user)" v-on:mouseleave="mouseOverChatFriend(user)" :class="{hover_ativo : chatHover.id == user.id}"  >
+                     <img v-if="user.avatar == '' || user.avatar == null" style="width: 100%; height: 100%; border-radius: 50%;" src="/themes/avatar.png" alt="">
+                     <img v-if="user.avatar !== ''" style="width: 100%; height: 100%; border-radius: 50%;" :src="user.avatar" alt="">
+                     <div class="name_option" style="top: 64px; z-index: 500000 !important;">
+                        <p>{{ user.nome.split(' ')[0] }}</p>
+                     </div> 
+               </div> 
+         </div>
+         </a>
+         <br>
+         <br>
+         <div style="width: 60%; height: 2px; background: rgba(0,0,0,.40); position: relative; left: 20%; top: 10px; z-index: 10; position: relative;"></div>
+         <br>
+         <a class="hpeo" v-for="server in servers">
+            <div  v-on:mouseover="mouseOutServer(server)" v-on:mouseleave="mouseOverServer(server)" :class="{hover_ativo : serverHover == server}"  >
+               <div class="people dont_ativoaa" @click="serverSelect(server)" :class="{ativo_server : selectServer == server}" >
+                     <img v-if="!server.imagem == '' || !server.imagem == null " style="width: 100%; height: 100%; border-radius: 50%;" :src="server.imagem" alt="">
+                     <h1 v-else="">{{ server.id }}</h1>
+               </div> 
+               <div class="name_option">
+                  <p>{{ server.name }}</p>
+               </div> 
+            <div> 
+         </a>
+      </div>
    </div>
 </div>

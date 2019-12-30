@@ -132,7 +132,9 @@ const app = new Vue({
    gifSelecionado: "",
    escondeAluno: false,
    escondeProfessor: false,
-   serverHover: {"id": -1}
+   serverHover: {"id": -1},
+   chatAtivos: [],
+   chatHover: {}
  },
  methods:{
     showBarPa(){
@@ -142,19 +144,19 @@ const app = new Vue({
          this.showBar = true
       }
     },
-    mouseOut(server){
+    mouseOutServer(server){
       this.serverHover = server
     },
-    mouseOver(server){
+    mouseOverServer(server){
       this.serverHover = {}
    },
-   mouseOutFriend(){
-      this.serverHover = {"id" : -1, "name": "Amigos", "owner": "-1"}
+   mouseOutChatFriend(user){
+      this.chatHover = user
    },
-   mouseOverFriend(){
-      this.serverHover = {}
+   mouseOverChatFriend(user){
+      this.chatHover = {}
    },
-    esconderProfessor(){
+   esconderProfessor(){
       if(this.escondeAluno){
          this.escondeAluno = false
       } else {
@@ -195,6 +197,12 @@ const app = new Vue({
       if(width < 900){
          this.navegarTabs("feed")
          this.showBar = false
+      }
+      var b = this.chatAtivos;
+      if(b.some(b => b.id === user.id)){
+       return;
+      } else{
+         this.chatAtivos.push(user)
       }
    },
    showMensagem(){
