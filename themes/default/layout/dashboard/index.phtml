@@ -203,7 +203,6 @@ const app = new Vue({
       } else{
          this.chatAtivos.push(user)
       }
-      localStorage.setItem('chat_ativos', JSON.stringify(this.chatAtivos))
    },
    showMensagem(){
       if(!this.ocupado){
@@ -473,6 +472,13 @@ const app = new Vue({
          this.navegarTabs('perfil')
          this.showBar = false
          }
+   },
+   removeChatAtivo(chat){
+      this.chatAtivos.splice(this.chatAtivos.indexOf(chat), 1)
+      localStorage.setItem('chat_ativos', JSON.stringify(this.chatAtivos))
+      if(this.chatAtivos.length == 0){
+         this.BackToHollow()
+      }
    },
    ondeEstouMount(){
       var onde = localStorage.onde ? JSON.parse(localStorage.onde) : {"id" : -1, "name": "Amigos", "owner": "-1"};

@@ -17,11 +17,21 @@
          
          <a class="hpeo" v-for="chat in chatAtivos">
             <div class="people dont_ativoaa" style="z-index: 1000000 !important;">
-               <div v-for="user in users" :class="{ativo_server : msgPrivadaUser.id == user.id}" v-if="chat.id == user.id" 
+            <p @click="removeChatAtivo(chat)" style="
+                     position: absolute;
+                     top: 0px;
+                     color: rgb(255, 255, 255);
+                     background: #101113;
+                     padding: 6px;
+                     border-radius: 2px;
+                     cursor: pointer;">
+               <i class="fas fa-times"></i>
+            </p>
+               <div v-for="user in users" :class="{ativo_server : msgPrivadaUser.id == user.id}" v-if="chat.id == user.id"
                v-on:mouseover="mouseOutChatFriend(user)" @click="chatComUser(user)" v-on:mouseleave="mouseOverChatFriend(user)" :class="{hover_ativo : chatHover.id == user.id}"  >
                      <img v-if="user.avatar == '' || user.avatar == null" style="width: 100%; height: 100%; border-radius: 50%;" src="/themes/avatar.png" alt="">
                      <img v-if="user.avatar !== ''" style="width: 100%; height: 100%; border-radius: 50%;" :src="user.avatar" alt="">
-                     <div class="name_option" style="top: 49px; z-index: 500000 !important;">
+                     <div class="name_option" style="top: 39px; z-index: 500000 !important;">
                         <p>{{ user.nome.split(' ')[0] }}</p>
                      </div> 
                </div> 
@@ -35,7 +45,7 @@
             <div  >
                <div class="people dont_ativoaa" @click="serverSelect(server)" :class="{ativo_server : selectServer == server}" >
                      <img v-if="!server.imagem == '' || !server.imagem == null " style="width: 100%; height: 100%; border-radius: 50%;" :src="server.imagem" alt="">
-                     <h1 v-else="">{{ server.id }}</h1>
+                     <h1 style="left: 38%;" v-else="">{{ server.name[0] }}</h1>
                </div> 
                <div class="name_option">
                   <p>{{ server.name }}</p>
