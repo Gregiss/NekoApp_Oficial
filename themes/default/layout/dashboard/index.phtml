@@ -131,7 +131,8 @@ const app = new Vue({
    enviarGif: false,
    gifSelecionado: "",
    escondeAluno: false,
-   escondeProfessor: false
+   escondeProfessor: false,
+   serverHover: {"id": -1}
  },
  methods:{
     showBarPa(){
@@ -141,6 +142,18 @@ const app = new Vue({
          this.showBar = true
       }
     },
+    mouseOut(server){
+      this.serverHover = server
+    },
+    mouseOver(server){
+      this.serverHover = {}
+   },
+   mouseOutFriend(){
+      this.serverHover = {"id" : -1, "name": "Amigos", "owner": "-1"}
+   },
+   mouseOverFriend(){
+      this.serverHover = {}
+   },
     esconderProfessor(){
       if(this.escondeAluno){
          this.escondeAluno = false
@@ -168,6 +181,7 @@ const app = new Vue({
       }
       localStorage.setItem('onde',JSON.stringify(server))
       localStorage.setItem('tipo', 'server');
+      this.serverHover = server
    },
    chatComUser(user){
       this.msgPrivada = true
