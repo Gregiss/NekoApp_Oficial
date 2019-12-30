@@ -1026,11 +1026,6 @@ img{
 	border-radius: 10px;
 }
 
-.hpeo{
-	z-index: 100000 !important;
-	position: relative;
-}
-
 .name_option p{
 	color: #fff;
 	padding: 6px 12px;
